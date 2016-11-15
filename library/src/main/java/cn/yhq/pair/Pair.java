@@ -22,6 +22,11 @@ public class Pair {
             this.context = context;
         }
 
+        public Builder addCatalog(PairCatalog catalog) {
+            this.catalogs.add(catalog);
+            return this;
+        }
+
         public PairCatalog newCatalog() {
             PairCatalog catalog = new PairCatalog();
             catalogs.add(catalog);

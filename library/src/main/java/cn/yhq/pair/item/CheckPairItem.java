@@ -6,9 +6,9 @@ import cn.yhq.pair.PairItemType;
  * Created by Administrator on 2016/11/15.
  */
 
-public class CheckBoxPairItem extends TwoValuePairItem {
+public class CheckPairItem extends TwoValuePairItem {
 
-    public CheckBoxPairItem() {
+    public CheckPairItem() {
         super(PairItemType.CHECKBOX);
     }
 }

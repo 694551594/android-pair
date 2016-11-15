@@ -17,7 +17,8 @@ public class TwoValuePairItem extends PairItem {
         return checked;
     }
 
-    public void setChecked(boolean checked) {
+    public TwoValuePairItem setChecked(boolean checked) {
         this.checked = checked;
+        return this;
     }
 }

@@ -1,6 +1,7 @@
 package cn.yhq.pair.item;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,8 +26,8 @@ public class PairCatalog {
         return item;
     }
 
-    public CheckBoxPairItem newCheckboxItem() {
-        CheckBoxPairItem item = new CheckBoxPairItem();
+    public CheckPairItem newCheckboxItem() {
+        CheckPairItem item = new CheckPairItem();
         items.add(item);
         return item;
     }
@@ -53,7 +54,13 @@ public class PairCatalog {
         return items;
     }
 
-    public void setItems(List<PairItem> items) {
+    public PairCatalog setItems(List<PairItem> items) {
         this.items = items;
+        return this;
+    }
+
+    public PairCatalog addItems(PairItem... items) {
+        this.items.addAll(Arrays.asList(items));
+        return this;
     }
 }

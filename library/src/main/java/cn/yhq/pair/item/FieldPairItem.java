@@ -3,11 +3,10 @@ package cn.yhq.pair.item;
 import cn.yhq.pair.PairItemType;
 
 
-public class FieldPairItem extends PairItem {
+public class FieldPairItem extends TextPairItem {
     private Object entity;
     private String exp;
     private String formatClass;
-    private String text;
 
     public FieldPairItem() {
         super(PairItemType.FIELD);
@@ -35,13 +34,5 @@ public class FieldPairItem extends PairItem {
 
     public void setFormatClass(String formatClass) {
         this.formatClass = formatClass;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 }
