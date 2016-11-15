@@ -2,14 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/main_background_color"
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/rl_pairlist_group_layout"
+        android:id="@+id/catalog"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/common_emptyview_height"
+        android:minHeight="32dp"
         android:paddingBottom="7dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
@@ -17,7 +16,7 @@
 
         <TextView
             android:id="@+id/tv_text"
-            style="@style/SummaryTextStyle"
+            android:textSize="12sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"

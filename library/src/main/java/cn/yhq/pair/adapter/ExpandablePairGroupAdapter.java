@@ -17,7 +17,12 @@ public class ExpandablePairGroupAdapter
     extends BaseExpandableAdapter<PairGroupList, PairGroup, PairItem> {
 
   public enum ItemType {
-    TYPE_CATALOG, TYPE_EMPTY, TYPE_TEXT, TYPE_SWITCH, TYPE_CHECKBOX, TYPE_IMAGE
+    TYPE_CATALOG,
+    TYPE_EMPTY,
+    TYPE_TEXT,
+    TYPE_SWITCH,
+    TYPE_CHECKBOX,
+    TYPE_IMAGE
   }
 
   private IExpandableCheckedChangeListener mExpandableCheckedChangeListener;
