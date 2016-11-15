@@ -16,8 +16,9 @@ public class PairCatalog {
         return title;
     }
 
-    public void setTitle(String title) {
+    public PairCatalog setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public EmptyPairItem newEmptyItem() {
@@ -46,6 +47,12 @@ public class PairCatalog {
 
     public FieldPairItem newFieldItem() {
         FieldPairItem item = new FieldPairItem();
+        items.add(item);
+        return item;
+    }
+
+    public ImagePairItem newImageItem() {
+        ImagePairItem item = new ImagePairItem();
         items.add(item);
         return item;
     }

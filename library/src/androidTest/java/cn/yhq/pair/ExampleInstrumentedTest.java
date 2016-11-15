@@ -40,5 +40,11 @@ public class ExampleInstrumentedTest {
                                         new CheckPairItem().setChecked(true)
                                 )
                 ).build();
+
+        new Pair.Builder(appContext)
+                .newCatalog()
+                .setTitle("xx")
+                .newTextItem()
+                .setText("1");
     }
 }
