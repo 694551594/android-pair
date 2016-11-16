@@ -1,4 +1,4 @@
-package cn.yhq.pair;
+package cn.yhq.pair.item;
 
 import cn.yhq.pair.item.PairItem;
 

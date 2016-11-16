@@ -8,7 +8,7 @@ import cn.yhq.base.BaseActivity;
 import cn.yhq.dialog.core.DialogBuilder;
 import cn.yhq.dialog.core.IDialog;
 import cn.yhq.pair.Pair;
-import cn.yhq.pair.PairIntercept;
+import cn.yhq.pair.item.PairIntercept;
 import cn.yhq.pair.action.PairActivityAction;
 import cn.yhq.pair.action.PairDialogAction;
 import cn.yhq.pair.action.PairPreferenceAction;
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
                                                 .setText("哈哈")
                                                 .setKey("你好")
                                                 .setDescription("我是描述")
-                                                .setAction(new PairDialogAction() {
+                                                .setAction(new PairDialogAction(this) {
 
                                                     @Override
                                                     protected IDialog onCreateDialog(Context context) {

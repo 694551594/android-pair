@@ -1,7 +1,5 @@
 package cn.yhq.pair.item;
 
-import cn.yhq.pair.PairItemType;
-
 
 public class FieldPairItem extends PairItem<FieldPairItem> {
     private Object entity;

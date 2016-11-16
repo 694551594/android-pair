@@ -9,7 +9,6 @@ import android.widget.ExpandableListView;
 import android.widget.ListAdapter;
 
 import cn.yhq.pair.adapter.PairAdapter;
-import cn.yhq.pair.item.PairItem;
 
 /**
  * Created by Yanghuiqiang on 2016/11/16.
@@ -42,14 +41,6 @@ public class PairView extends ExpandableListView {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 return true;
-            }
-        });
-        this.setOnChildClickListener(new OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                PairItem<?> pairItem = mPairAdapter.getChild(groupPosition, childPosition);
-                pairItem.onClick(getContext());
-                return false;
             }
         });
     }

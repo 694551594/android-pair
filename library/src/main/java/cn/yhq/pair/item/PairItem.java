@@ -1,14 +1,10 @@
 package cn.yhq.pair.item;
 
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.yhq.pair.OnInvalidateListener;
-import cn.yhq.pair.PairIntercept;
-import cn.yhq.pair.PairItemType;
 import cn.yhq.pair.action.PairAction;
 import cn.yhq.pair.action.PairClickAction;
 import cn.yhq.pair.action.PairPreferenceAction;
@@ -31,10 +27,10 @@ public class PairItem<T extends PairItem<T>> {
         this.type = type;
     }
 
-    public boolean onClick(Context context) {
+    public boolean onClick() {
         if (action != null) {
             if (action instanceof PairClickAction) {
-                return ((PairClickAction) action).onClick(context, this);
+                return ((PairClickAction) action).onClick(this);
             }
         }
         return false;
@@ -165,8 +161,4 @@ public class PairItem<T extends PairItem<T>> {
         return type;
     }
 
-    public T setType(PairItemType type) {
-        this.type = type;
-        return (T) this;
-    }
 }

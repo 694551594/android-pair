@@ -1,7 +1,5 @@
 package cn.yhq.pair.item;
 
-import cn.yhq.pair.PairItemType;
-
 public class TextPairItem extends PairItem<TextPairItem> {
     private String text;
 

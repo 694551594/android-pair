@@ -1,9 +1,5 @@
 package cn.yhq.pair.item;
 
-import android.content.Context;
-
-import cn.yhq.pair.PairIntercept;
-import cn.yhq.pair.PairItemType;
 import cn.yhq.pair.action.PairAction;
 
 /**
@@ -39,8 +35,8 @@ public class TwoValuePairItem<T> extends PairItem<TwoValuePairItem<T>> {
     }
 
     @Override
-    public boolean onClick(Context context) {
-        boolean handle = super.onClick(context);
+    public boolean onClick() {
+        boolean handle = super.onClick();
         if (!handle) {
             this.toggle();
         }

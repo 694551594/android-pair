@@ -1,11 +1,14 @@
 package cn.yhq.pair;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.yhq.pair.adapter.PairAdapter;
+import cn.yhq.pair.item.OnInvalidateListener;
 import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.item.PairItem;
 import cn.yhq.pair.ui.PairView;
@@ -34,6 +37,14 @@ public class Pair {
         }
         pairAdapter = new PairAdapter(context, catalogs);
         pairView.setAdapter(pairAdapter);
+        pairView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                PairItem<?> pairItem = pairAdapter.getChild(groupPosition, childPosition);
+                pairItem.onClick();
+                return false;
+            }
+        });
     }
 
     private void intercept() {
