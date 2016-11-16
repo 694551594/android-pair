@@ -8,6 +8,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListAdapter;
 
+import cn.yhq.pair.R;
 import cn.yhq.pair.adapter.PairAdapter;
 
 /**
@@ -35,6 +36,7 @@ public class PairView extends ExpandableListView {
     public void initView() {
         this.setDivider(null);
         this.setGroupIndicator(null);
+        this.setBackgroundResource(R.color.background_pair_view);
         // 该listview是一直展开的并且group不可点
         this.setOnGroupClickListener(new OnGroupClickListener() {
 

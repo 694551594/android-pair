@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
                                 .setTitle("我是组标题")
                                 .addItems(
                                         new TextPairItem()
-                                                .setIcon(R.drawable.ic_launcher)
+                                                .setIcon(R.drawable.find_more_friend_photograph_icon)
                                                 .setText("哈哈")
                                                 .setKey("我是")
                                                 .setDescription("我是描述")

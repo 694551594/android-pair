@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:descendantFocusability="blocksDescendants"
     android:orientation="vertical">
 
@@ -50,20 +51,10 @@
                     android:visibility="gone" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignTop="@+id/key"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:scaleType="fitCenter" />
-
             <TextView
                 android:id="@+id/key"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
                 android:layout_toRightOf="@+id/icon"
@@ -71,6 +62,18 @@
                 android:textSize="@dimen/text_size"
                 android:gravity="right|center"
                 android:text="测试" />
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_launcher"
+                android:scaleType="fitCenter"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp" />
 
         </RelativeLayout>
 
@@ -89,7 +92,7 @@
     <View
         android:id="@+id/child_divider"
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:background="@color/list_item_divider_color" />

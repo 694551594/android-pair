@@ -46,14 +46,14 @@ public abstract class BaseChildItemViewProvider<T extends PairItem> extends Chil
         }
 
         // 分割线
-        viewHolder.bindResId(R.id.child_divider);
-        if (childPosition == this.getAdapter()
-                .getChildrenCount(groupPosition) - 1) {
-            viewHolder.setVisibility(View.GONE);
-        } else {
-            viewHolder.setVisibility(View.VISIBLE);
-        }
-
+        //viewHolder.bindResId(R.id.child_divider);
+//        if (childPosition == this.getAdapter()
+//                .getChildrenCount(groupPosition) - 1) {
+//            viewHolder.setVisibility(View.GONE);
+//        } else {
+//            viewHolder.setVisibility(View.VISIBLE);
+//        }
+        //viewHolder.setVisibility(View.GONE);
         this.setupItemView(viewHolder, groupPosition, groupEntity, childPosition, (T) childEntity);
     }
 

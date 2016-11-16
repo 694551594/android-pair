@@ -8,6 +8,7 @@
 
     <cn.yhq.pair.ui.PairView
         android:id="@+id/pairview"
+        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></cn.yhq.pair.ui.PairView>
 </RelativeLayout>
