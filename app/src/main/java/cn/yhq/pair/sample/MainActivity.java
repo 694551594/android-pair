@@ -8,11 +8,11 @@ import cn.yhq.base.BaseActivity;
 import cn.yhq.dialog.core.DialogBuilder;
 import cn.yhq.dialog.core.IDialog;
 import cn.yhq.pair.Pair;
-import cn.yhq.pair.item.PairIntercept;
 import cn.yhq.pair.action.PairActivityAction;
 import cn.yhq.pair.action.PairDialogAction;
 import cn.yhq.pair.action.PairPreferenceAction;
 import cn.yhq.pair.item.PairCatalog;
+import cn.yhq.pair.item.PairIntercept;
 import cn.yhq.pair.item.SwitchPairItem;
 import cn.yhq.pair.item.TextPairItem;
 import cn.yhq.pair.ui.PairView;
@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
         super.onViewCreated(savedInstanceState);
         PairView pairView = this.getView(R.id.pairview);
 
-        Pair pair = new Pair.Builder(this)
+        new Pair.Builder(this)
                 .addCatalog(
                         new PairCatalog()
                                 .setTitle("我是组标题")
@@ -68,8 +68,7 @@ public class MainActivity extends BaseActivity {
                                 .addItems(
                                         new SwitchPairItem().setChecked(true).setKey("key2")
                                 )
-                ).build();
-        pair.setup(pairView);
+                ).build().setup(pairView);
     }
 
     @Override
