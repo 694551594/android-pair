@@ -24,6 +24,12 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void onConfig(Config config) {
+        super.onConfig(config);
+        config.setSwipeBackWrapper(false);
+    }
+
+    @Override
     protected void onViewCreated(Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         PairView pairView = this.getView(R.id.pairview);
@@ -36,7 +42,7 @@ public class MainActivity extends BaseActivity {
                                         new TextPairItem()
                                                 .setIcon(R.drawable.find_more_friend_photograph_icon)
                                                 .setText("哈哈")
-                                                .setKey("我是")
+                                                .setKey("朋友圈")
                                                 .setDescription("我是描述")
                                                 .setAction(new PairActivityAction(this, MainActivity.class))
                                                 .addIntercept(new PairIntercept<TextPairItem>() {
@@ -46,13 +52,25 @@ public class MainActivity extends BaseActivity {
                                                         return chain.getItem();
                                                     }
                                                 }),
+                                        new TextPairItem()
+                                                .setIcon(R.drawable.find_more_friend_scan)
+                                                .setKey("扫一扫"),
+                                        new TextPairItem()
+                                                .setIcon(R.drawable.find_more_friend_photograph_icon)
+                                                .setKey("朋友圈"),
+                                        new TextPairItem()
+                                                .setIcon(R.drawable.find_more_friend_shake)
+                                                .setKey("摇一摇"),
+                                        new TextPairItem()
+                                                .setKey("没有图标")
+                                                .setText("没有图标的文本哦"),
                                         new SwitchPairItem()
                                                 .setKey("测试Preference")
                                                 .setAction(new PairPreferenceAction(this, "test")),
                                         new TextPairItem()
-                                                .setText("哈哈")
-                                                .setKey("你好")
-                                                .setDescription("我是描述")
+                                                .setText("对话框")
+                                                .setKey("对话框")
+                                                .setDescription("点我可以打开对话框")
                                                 .setAction(new PairDialogAction(this) {
 
                                                     @Override
@@ -66,7 +84,7 @@ public class MainActivity extends BaseActivity {
                         new PairCatalog()
                                 .setTitle("我也是组标题")
                                 .addItems(
-                                        new SwitchPairItem().setChecked(true).setKey("key2")
+                                        new SwitchPairItem().setChecked(true).setKey("哈哈")
                                 )
                 ).build().setup(pairView);
     }

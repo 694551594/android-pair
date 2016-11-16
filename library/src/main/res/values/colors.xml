@@ -2,6 +2,6 @@
 <resources>
 
     <color name="summary_text_color">#8a000000</color>
-    <color name="background_pair_view">#ebebeb</color>
+    <color name="background_pair_group">#ebebeb</color>
     <color name="list_item_divider_color">#ebebeb</color>
 </resources>

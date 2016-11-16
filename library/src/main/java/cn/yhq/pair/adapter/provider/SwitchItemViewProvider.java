@@ -1,7 +1,6 @@
 package cn.yhq.pair.adapter.provider;
 
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import cn.yhq.adapter.core.ViewHolder;
@@ -17,16 +16,19 @@ import cn.yhq.pair.item.SwitchPairItem;
 public class SwitchItemViewProvider extends BaseChildItemViewProvider<SwitchPairItem> {
 
     @Override
-    public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, final SwitchPairItem childEntity) {
-        Switch switchButton = viewHolder.getView(R.id.switch_button);
+    public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, SwitchPairItem childEntity) {
         viewHolder.bindResId(R.id.switch_button)
                 .setVisibility(View.VISIBLE)
-                .setChecked(childEntity.isChecked());
-        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                childEntity.setChecked(isChecked);
-            }
-        });
+                .setChecked(childEntity.isChecked())
+                .setTag(childEntity)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Switch switchButton = (Switch) view;
+                        SwitchPairItem switchPairItem = (SwitchPairItem) view.getTag();
+                        switchPairItem.setChecked(switchButton.isChecked());
+                    }
+                });
+
     }
 }

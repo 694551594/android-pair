@@ -148,12 +148,18 @@ public class PairItem<T extends PairItem<T>> {
         return (T) this;
     }
 
-    public PairAction getAction() {
-        return action;
-    }
-
     public T setAction(PairAction action) {
         this.action = action;
+        return (T) this;
+    }
+
+    public T setClickAction(PairClickAction action) {
+        this.setAction(action);
+        return (T) this;
+    }
+
+    public T setPreferenceAction(PairPreferenceAction action) {
+        this.setAction(action);
         return (T) this;
     }
 
