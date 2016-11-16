@@ -5,12 +5,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import cn.android.developers.sdk.R;
-import cn.developer.sdk.adapter.core.ViewHolder;
-import cn.developer.sdk.adapter.expand.GroupItemViewProvider;
-import cn.developer.sdk.pair.core.PairGroup;
+import android.widget.ExpandableListAdapter;
 
-public class CatalogItemViewProvider extends GroupItemViewProvider<PairGroup> {
+import cn.yhq.adapter.core.ViewHolder;
+import cn.yhq.pair.item.PairCatalog;
+
+
+public class CatalogItemViewProvider extends ExpandableListAdapter<PairCatalog> {
 
   @Override
   public View getConvertView(Context context, LayoutInflater inflater, ViewGroup parent) {
@@ -18,7 +19,7 @@ public class CatalogItemViewProvider extends GroupItemViewProvider<PairGroup> {
   }
 
   @Override
-  public void setupView(ViewHolder viewHolder, int position, PairGroup entity, boolean isExpanded) {
+  public void setupView(ViewHolder viewHolder, int position, PairCatalog entity, boolean isExpanded) {
     viewHolder.bindResId(R.id.tv_text)
         .setVisibility(TextUtils.isEmpty(entity.getText()) ? View.GONE : View.VISIBLE)
         .bindTextData(entity.getText()).bindResId(R.id.rl_pairlist_group_layout)

@@ -7,7 +7,10 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import cn.yhq.pair.item.CheckPairItem;
+import cn.yhq.pair.item.PairCatalog;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -22,5 +25,26 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("cn.yhq.pair.test", appContext.getPackageName());
+
+
+        new Pair.Builder(appContext)
+                .addCatalog(
+                        new PairCatalog()
+                                .addItems(
+                                        new CheckPairItem().setChecked(true)
+                                )
+                )
+                .addCatalog(
+                        new PairCatalog()
+                                .addItems(
+                                        new CheckPairItem().setChecked(true)
+                                )
+                ).build();
+
+        new Pair.Builder(appContext)
+                .newCatalog()
+                .setTitle("xx")
+                .newTextItem()
+                .setText("1");
     }
 }
