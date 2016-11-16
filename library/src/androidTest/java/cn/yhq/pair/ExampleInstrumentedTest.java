@@ -7,9 +7,6 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import cn.yhq.pair.item.CheckPairItem;
-import cn.yhq.pair.item.PairCatalog;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -26,25 +23,5 @@ public class ExampleInstrumentedTest {
 
         assertEquals("cn.yhq.pair.test", appContext.getPackageName());
 
-
-        new Pair.Builder(appContext)
-                .addCatalog(
-                        new PairCatalog()
-                                .addItems(
-                                        new CheckPairItem().setChecked(true)
-                                )
-                )
-                .addCatalog(
-                        new PairCatalog()
-                                .addItems(
-                                        new CheckPairItem().setChecked(true)
-                                )
-                ).build();
-
-        new Pair.Builder(appContext)
-                .newCatalog()
-                .setTitle("xx")
-                .newTextItem()
-                .setText("1");
     }
 }

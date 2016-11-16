@@ -1,10 +1,23 @@
 package cn.yhq.pair.action;
 
 
-public interface PairPreferenceAction extends PairAction {
+import android.content.Context;
 
-    void onSavePreference(int key, Object value);
+import cn.yhq.pair.utils.PreferencesUtils;
 
-    Object getPreference(int key);
+public class PairPreferenceAction implements PairAction {
+    private String key;
+
+    public PairPreferenceAction(String key) {
+        this.key = key;
+    }
+
+    public boolean onSavePreference(Context context, Object value) {
+        return PreferencesUtils.savePreferences(context, key, value);
+    }
+
+    public Object getPreference(Context context) {
+        return PreferencesUtils.getAllValue(context).get(key);
+    }
 
 }

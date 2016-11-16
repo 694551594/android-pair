@@ -21,12 +21,6 @@ public class PairCatalog {
         return this;
     }
 
-    public EmptyPairItem newEmptyItem() {
-        EmptyPairItem item = new EmptyPairItem();
-        items.add(item);
-        return item;
-    }
-
     public CheckPairItem newCheckboxItem() {
         CheckPairItem item = new CheckPairItem();
         items.add(item);

@@ -6,7 +6,7 @@ import cn.yhq.pair.PairItemType;
  * Created by Administrator on 2016/11/15.
  */
 
-public class TwoValuePairItem extends PairItem {
+public class TwoValuePairItem<T> extends PairItem<TwoValuePairItem<T>> {
     private boolean checked;
 
     public TwoValuePairItem(PairItemType type) {
@@ -17,8 +17,8 @@ public class TwoValuePairItem extends PairItem {
         return checked;
     }
 
-    public TwoValuePairItem setChecked(boolean checked) {
+    public T setChecked(boolean checked) {
         this.checked = checked;
-        return this;
+        return (T) this;
     }
 }
