@@ -17,7 +17,7 @@ import cn.yhq.pair.item.SwitchPairItem;
 public class SwitchItemViewProvider extends BaseChildItemViewProvider<SwitchPairItem> {
 
     @Override
-    public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, SwitchPairItem childEntity) {
+    public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, final SwitchPairItem childEntity) {
         Switch switchButton = viewHolder.getView(R.id.switch_button);
         viewHolder.bindResId(R.id.switch_button)
                 .setVisibility(View.VISIBLE)
@@ -25,7 +25,7 @@ public class SwitchItemViewProvider extends BaseChildItemViewProvider<SwitchPair
         switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                childEntity.setChecked(isChecked);
             }
         });
     }

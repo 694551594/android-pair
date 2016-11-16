@@ -13,9 +13,10 @@ public abstract class PairDialogAction implements PairClickAction {
     }
 
     @Override
-    public void onClick(Context context, PairItem pairItem) {
+    public boolean onClick(Context context, PairItem pairItem) {
         dialog = onCreateDialog(context);
         dialog.show();
+        return false;
     }
 
     protected abstract IDialog onCreateDialog(Context context);

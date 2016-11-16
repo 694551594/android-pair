@@ -11,7 +11,7 @@ import cn.yhq.pair.Pair;
 import cn.yhq.pair.PairIntercept;
 import cn.yhq.pair.action.PairActivityAction;
 import cn.yhq.pair.action.PairDialogAction;
-import cn.yhq.pair.adapter.PairAdapter;
+import cn.yhq.pair.action.PairPreferenceAction;
 import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.item.SwitchPairItem;
 import cn.yhq.pair.item.TextPairItem;
@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
         super.onViewCreated(savedInstanceState);
         PairView pairView = this.getView(R.id.pairview);
 
-        PairAdapter adapter = new Pair.Builder(this)
+        Pair pair = new Pair.Builder(this)
                 .addCatalog(
                         new PairCatalog()
                                 .setTitle("我是组标题")
@@ -46,7 +46,9 @@ public class MainActivity extends BaseActivity {
                                                         return chain.getItem();
                                                     }
                                                 }),
-                                        new SwitchPairItem().setChecked(true).setKey("key2"),
+                                        new SwitchPairItem()
+                                                .setKey("测试Preference")
+                                                .setAction(new PairPreferenceAction(this, "test")),
                                         new TextPairItem()
                                                 .setText("哈哈")
                                                 .setKey("你好")
@@ -67,7 +69,7 @@ public class MainActivity extends BaseActivity {
                                         new SwitchPairItem().setChecked(true).setKey("key2")
                                 )
                 ).build();
-        pairView.setAdapter(adapter);
+        pair.setup(pairView);
     }
 
     @Override

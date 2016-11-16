@@ -8,6 +8,6 @@ import cn.yhq.pair.item.PairItem;
 
 public interface PairClickAction extends PairAction {
 
-    void onClick(Context context, PairItem pairItem);
+    boolean onClick(Context context, PairItem pairItem);
 
 }

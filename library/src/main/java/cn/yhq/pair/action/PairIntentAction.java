@@ -13,8 +13,9 @@ public class PairIntentAction implements PairClickAction {
     }
 
     @Override
-    public void onClick(Context context, PairItem pairItem) {
+    public boolean onClick(Context context, PairItem pairItem) {
         context.startActivity(intent);
+        return false;
     }
 
 }

@@ -7,16 +7,18 @@ import cn.yhq.pair.utils.PreferencesUtils;
 
 public class PairPreferenceAction implements PairAction {
     private String key;
+    private Context context;
 
-    public PairPreferenceAction(String key) {
+    public PairPreferenceAction(Context context, String key) {
         this.key = key;
+        this.context = context;
     }
 
-    public boolean onSavePreference(Context context, Object value) {
+    public boolean onSavePreference(Object value) {
         return PreferencesUtils.savePreferences(context, key, value);
     }
 
-    public Object getPreference(Context context) {
+    public Object getPreference() {
         return PreferencesUtils.getAllValue(context).get(key);
     }
 

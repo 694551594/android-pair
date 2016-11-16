@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.yhq.pair.OnInvalidateListener;
 import cn.yhq.pair.PairIntercept;
 import cn.yhq.pair.PairItemType;
 import cn.yhq.pair.action.PairAction;
@@ -24,34 +25,46 @@ public class PairItem<T extends PairItem<T>> {
     private PairItemType type;
     private String description;
     private List<PairIntercept> intercepts = new ArrayList<>();
+    private OnInvalidateListener onInvalidateListener;
 
     public PairItem(PairItemType type) {
         this.type = type;
     }
 
-    public void onClick(Context context) {
+    public boolean onClick(Context context) {
         if (action != null) {
             if (action instanceof PairClickAction) {
-                ((PairClickAction) action).onClick(context, this);
+                return ((PairClickAction) action).onClick(context, this);
+            }
+        }
+        return false;
+    }
+
+    public void onSavePreference(Object value) {
+        if (action != null) {
+            if (action instanceof PairPreferenceAction) {
+                ((PairPreferenceAction) action).onSavePreference(value);
             }
         }
     }
 
-    public void onSavePreference(Context context, Object value) {
+    public Object getPreference() {
         if (action != null) {
             if (action instanceof PairPreferenceAction) {
-                ((PairPreferenceAction) action).onSavePreference(context, value);
-            }
-        }
-    }
-
-    public Object getPreference(Context context) {
-        if (action != null) {
-            if (action instanceof PairPreferenceAction) {
-                return ((PairPreferenceAction) action).getPreference(context);
+                return ((PairPreferenceAction) action).getPreference();
             }
         }
         return null;
+    }
+
+    protected void invalidate() {
+        if (onInvalidateListener != null) {
+            onInvalidateListener.onInvalidate();
+        }
+    }
+
+    public void setOnInvalidateListener(OnInvalidateListener onInvalidateListener) {
+        this.onInvalidateListener = onInvalidateListener;
     }
 
     public T intercept() {
