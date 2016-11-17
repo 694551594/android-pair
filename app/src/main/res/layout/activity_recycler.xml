@@ -6,8 +6,9 @@
     android:layout_height="match_parent"
     tools:context="cn.yhq.pair.sample.MainActivity">
 
-    <cn.yhq.pair.ui.expandable.PairView
+    <cn.yhq.pair.ui.recyclerview.PairView
         android:id="@+id/pairview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </RelativeLayout>

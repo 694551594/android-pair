@@ -6,12 +6,10 @@ import cn.yhq.pair.intercept.FieldParserIntercept;
 public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
     private Object entity;
     private String exp;
-    private FieldParserIntercept intercept;
 
     public FieldPairItem() {
         super(PairItemType.FIELD);
-        intercept = new FieldParserIntercept();
-        this.addIntercept(intercept);
+        this.addIntercept(new FieldParserIntercept());
     }
 
     public Object getEntity() {
@@ -20,7 +18,6 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
 
     public FieldPairItem setEntity(Object entity) {
         this.entity = entity;
-        this.intercept.setEntity(entity);
         return this;
     }
 

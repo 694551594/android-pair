@@ -20,16 +20,10 @@ public class FieldParserIntercept implements PairIntercept<FieldPairItem> {
     private JexlEngine jexlEngine = new JexlBuilder().create();
     private JxltEngine jxltEngine = jexlEngine.createJxltEngine();
 
-    public FieldParserIntercept() {
-
-    }
-
-    public void setEntity(Object entity) {
-        this.jexlContext.set(entity.getClass().getSimpleName().toLowerCase(Locale.getDefault()), entity);
-    }
-
     @Override
     public FieldPairItem intercept(Chain<FieldPairItem> chain) throws Exception {
+        Object entity = chain.getItem().getEntity();
+        this.jexlContext.set(entity.getClass().getSimpleName().toLowerCase(Locale.getDefault()), entity);
         JxltEngine.Expression expression = jxltEngine.createExpression(chain.getItem().getExp());
         Object newValue = expression.evaluate(jexlContext);
         chain.getItem().setText(newValue);

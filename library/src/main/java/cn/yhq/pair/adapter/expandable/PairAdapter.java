@@ -1,4 +1,4 @@
-package cn.yhq.pair.adapter;
+package cn.yhq.pair.adapter.expandable;
 
 import android.content.Context;
 
@@ -7,11 +7,6 @@ import java.util.List;
 import cn.yhq.adapter.expand.BaseExpandableListAdapter;
 import cn.yhq.adapter.expand.IChildItemViewProviderKeyPolicy;
 import cn.yhq.adapter.expand.IGroupItemViewProviderKeyPolicy;
-import cn.yhq.pair.adapter.provider.CatalogItemViewProvider;
-import cn.yhq.pair.adapter.provider.CheckboxItemViewProvider;
-import cn.yhq.pair.adapter.provider.ImageItemViewProvider;
-import cn.yhq.pair.adapter.provider.SwitchItemViewProvider;
-import cn.yhq.pair.adapter.provider.TextItemViewProvider;
 import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.item.PairItem;
 

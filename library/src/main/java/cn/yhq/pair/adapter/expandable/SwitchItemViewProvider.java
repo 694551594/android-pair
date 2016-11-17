@@ -1,4 +1,4 @@
-package cn.yhq.pair.adapter.provider;
+package cn.yhq.pair.adapter.expandable;
 
 import android.view.View;
 import android.widget.Switch;
@@ -18,7 +18,6 @@ public class SwitchItemViewProvider extends BaseChildItemViewProvider<SwitchPair
     @Override
     public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, SwitchPairItem childEntity) {
         viewHolder.bindResId(R.id.switch_button)
-                .setVisibility(View.VISIBLE)
                 .setChecked(childEntity.isChecked())
                 .setTag(childEntity)
                 .setOnClickListener(new View.OnClickListener() {

@@ -41,8 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/icon"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
                 android:textAppearance="?android:attr/textAppearanceListItemSmall"
                 android:gravity="right|center"
                 android:text="测试" />
@@ -63,8 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="我是描述"
-            android:layout_marginTop="-12dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginBottom="13dp"
             android:textColor="@color/summary_text_color"
             android:textSize="@dimen/summary_text_size" />
 

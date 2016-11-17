@@ -1,26 +1,43 @@
 package cn.yhq.pair;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.yhq.pair.adapter.PairAdapter;
+import cn.yhq.pair.adapter.recyclerview.PairAdapter;
 import cn.yhq.pair.item.OnInvalidateListener;
 import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.item.PairItem;
-import cn.yhq.pair.ui.PairView;
+import cn.yhq.pair.ui.expandable.PairView;
 
 public class Pair {
-    private PairAdapter pairAdapter;
+    private cn.yhq.pair.adapter.expandable.PairAdapter pairAdapter;
     private Context context;
     private List<PairCatalog> catalogs = new ArrayList<>();
 
     public Pair(Context context, List<PairCatalog> catalogs) {
         this.context = context;
         this.catalogs = catalogs;
+    }
+
+    public void setup(RecyclerView recyclerView) {
+        intercept();
+        for (PairCatalog catalog : catalogs) {
+            for (PairItem<?> item : catalog.getItems()) {
+                item.setOnInvalidateListener(new OnInvalidateListener() {
+                    @Override
+                    public void onInvalidate() {
+                        pairAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        }
+        PairAdapter pairAdapter = new PairAdapter(context, catalogs);
+        recyclerView.setAdapter(pairAdapter);
     }
 
     public void setup(PairView pairView) {
@@ -35,7 +52,7 @@ public class Pair {
                 });
             }
         }
-        pairAdapter = new PairAdapter(context, catalogs);
+        pairAdapter = new cn.yhq.pair.adapter.expandable.PairAdapter(context, catalogs);
         pairView.setAdapter(pairAdapter);
         pairView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override

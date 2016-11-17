@@ -1,9 +1,9 @@
-package cn.yhq.pair.adapter.provider;
+package cn.yhq.pair.adapter.recyclerview;
 
 import android.view.View;
 import android.widget.CheckBox;
 
-import cn.yhq.adapter.core.ViewHolder;
+import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
 import cn.yhq.pair.item.CheckPairItem;
 import cn.yhq.pair.item.PairCatalog;

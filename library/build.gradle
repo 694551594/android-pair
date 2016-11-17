@@ -28,6 +28,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'cn.yhq:android-adapter:1.1.0'
+    compile 'cn.yhq:android-recycler-adapter:1.1.0'
     compile 'cn.yhq:android-dialog:1.2'
     testCompile 'junit:junit:4.12'
 }

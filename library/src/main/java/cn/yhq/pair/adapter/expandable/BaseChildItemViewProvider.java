@@ -1,4 +1,4 @@
-package cn.yhq.pair.adapter.provider;
+package cn.yhq.pair.adapter.expandable;
 
 import android.support.v7.widget.ViewStubCompat;
 import android.text.Html;

@@ -1,4 +1,4 @@
-package cn.yhq.pair.adapter.provider;
+package cn.yhq.pair.adapter.expandable;
 
 import android.text.TextUtils;
 import android.view.View;

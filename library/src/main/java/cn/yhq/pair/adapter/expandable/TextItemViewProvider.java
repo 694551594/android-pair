@@ -1,8 +1,7 @@
-package cn.yhq.pair.adapter.provider;
+package cn.yhq.pair.adapter.expandable;
 
 import android.text.Html;
 import android.text.TextUtils;
-import android.view.View;
 
 import cn.yhq.adapter.core.ViewHolder;
 import cn.yhq.pair.R;
@@ -16,7 +15,6 @@ public class TextItemViewProvider extends BaseChildItemViewProvider<BaseTextPair
         String value = childEntity.getText();
 
         viewHolder.bindResId(R.id.text)
-                .setVisibility(View.VISIBLE)
                 .setText(TextUtils.isEmpty(value) ? "" : Html.fromHtml(value));
     }
 

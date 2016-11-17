@@ -1,7 +1,6 @@
-package cn.yhq.pair.adapter.provider;
+package cn.yhq.pair.adapter.expandable;
 
 import android.text.TextUtils;
-import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
@@ -16,8 +15,7 @@ public class ImageItemViewProvider extends BaseChildItemViewProvider<ImagePairIt
     @Override
     public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, ImagePairItem childEntity) {
 
-        ImageView imageView = viewHolder.bindResId(R.id.image)
-                .setVisibility(View.VISIBLE).getView(R.id.image);
+        ImageView imageView = viewHolder.bindResId(R.id.image).getView(R.id.image);
 
         if (TextUtils.isEmpty(childEntity.getUrl())) {
             if (childEntity.getResId() != 0) {
@@ -37,8 +35,8 @@ public class ImageItemViewProvider extends BaseChildItemViewProvider<ImagePairIt
             params.width = DisplayUtils.dp2Px(getContext(), width);
             ;
         } else {
-            params.height = DisplayUtils.dp2Px(getContext(), 40);
-            params.width = DisplayUtils.dp2Px(getContext(), 40);
+            params.height = DisplayUtils.dp2Px(getContext(), 32);
+            params.width = DisplayUtils.dp2Px(getContext(), 32);
         }
         imageView.setLayoutParams(params);
     }

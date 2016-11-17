@@ -1,4 +1,4 @@
-package cn.yhq.pair.ui;
+package cn.yhq.pair.ui.expandable;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -8,7 +8,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListAdapter;
 
-import cn.yhq.pair.adapter.PairAdapter;
+import cn.yhq.pair.adapter.expandable.PairAdapter;
 
 /**
  * Created by Yanghuiqiang on 2016/11/16.
@@ -35,6 +35,7 @@ public class PairView extends ExpandableListView {
     public void initView() {
         // this.setDivider(null);
         this.setGroupIndicator(null);
+        this.setVerticalScrollBarEnabled(false);
         this.setBackgroundResource(android.R.color.white);
         // 该listview是一直展开的并且group不可点
         this.setOnGroupClickListener(new OnGroupClickListener() {

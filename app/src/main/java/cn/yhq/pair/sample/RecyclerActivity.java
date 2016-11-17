@@ -3,7 +3,6 @@ package cn.yhq.pair.sample;
 import android.content.Context;
 import android.os.Bundle;
 
-import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 import cn.yhq.base.BaseActivity;
 import cn.yhq.dialog.core.DialogBuilder;
 import cn.yhq.dialog.core.IDialog;
@@ -19,18 +18,13 @@ import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.item.PairIntercept;
 import cn.yhq.pair.item.SwitchPairItem;
 import cn.yhq.pair.item.TextPairItem;
-import cn.yhq.pair.ui.expandable.PairView;
+import cn.yhq.pair.ui.recyclerview.PairView;
 
-public class MainActivity extends BaseActivity {
-
-    static {
-        CustomActivityOnCrash.setShowErrorDetails(true);
-    }
+public class RecyclerActivity extends BaseActivity {
 
     @Override
     protected void onConfig(Config config) {
         super.onConfig(config);
-        config.setSwipeBackWrapper(false);
     }
 
     public static class User {
@@ -145,6 +139,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getContentViewLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_recycler;
     }
 }
