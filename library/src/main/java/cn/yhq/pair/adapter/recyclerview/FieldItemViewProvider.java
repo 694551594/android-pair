@@ -5,12 +5,12 @@ import android.text.TextUtils;
 
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
-import cn.yhq.pair.item.TextPairItem;
+import cn.yhq.pair.item.FieldPairItem;
 
-public class TextItemViewProvider extends BasePairItemViewProvider<TextPairItem> {
+public class FieldItemViewProvider extends BasePairItemViewProvider<FieldPairItem> {
 
     @Override
-    public void setupItemView(ViewHolder viewHolder, int position, TextPairItem childEntity) {
+    public void setupItemView(ViewHolder viewHolder, int position, FieldPairItem childEntity) {
         String value = childEntity.getText();
 
         viewHolder.bindResId(R.id.text)

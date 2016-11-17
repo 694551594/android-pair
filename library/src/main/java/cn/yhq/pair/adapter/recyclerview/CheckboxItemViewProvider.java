@@ -6,17 +6,16 @@ import android.widget.CheckBox;
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
 import cn.yhq.pair.item.CheckPairItem;
-import cn.yhq.pair.item.PairCatalog;
 
 /**
  * 开关item视图提供器
  *
  * @author Yanghuiqiang 2015-6-29
  */
-public class CheckboxItemViewProvider extends BaseChildItemViewProvider<CheckPairItem> {
+public class CheckboxItemViewProvider extends BasePairItemViewProvider<CheckPairItem> {
 
     @Override
-    public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, CheckPairItem childEntity) {
+    public void setupItemView(ViewHolder viewHolder, int position, CheckPairItem childEntity) {
         viewHolder.bindResId(R.id.checkbox)
                 .setChecked(childEntity.isChecked())
                 .setTag(childEntity)

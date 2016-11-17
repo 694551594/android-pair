@@ -8,7 +8,7 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
     private String exp;
 
     public FieldPairItem() {
-        super(PairItemType.FIELD);
+        super(Type.FIELD);
         this.addIntercept(new FieldParserIntercept());
     }
 

@@ -7,7 +7,7 @@ package cn.yhq.pair.item;
 public class SwitchPairItem extends TwoValuePairItem<SwitchPairItem> {
 
     public SwitchPairItem() {
-        super(PairItemType.SWITCH);
+        super(Type.SWITCH);
     }
 
 }

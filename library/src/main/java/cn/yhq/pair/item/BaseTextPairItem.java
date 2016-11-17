@@ -7,7 +7,7 @@ package cn.yhq.pair.item;
 public class BaseTextPairItem<T extends BaseTextPairItem<T>> extends PairItem<T> {
     private String text;
 
-    public BaseTextPairItem(PairItemType type) {
+    public BaseTextPairItem(Type type) {
         super(type);
     }
 

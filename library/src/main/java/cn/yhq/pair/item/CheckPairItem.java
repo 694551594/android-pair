@@ -7,6 +7,6 @@ package cn.yhq.pair.item;
 public class CheckPairItem extends TwoValuePairItem<CheckPairItem> {
 
     public CheckPairItem() {
-        super(PairItemType.CHECKBOX);
+        super(Type.CHECKBOX);
     }
 }

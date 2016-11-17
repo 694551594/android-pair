@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.Locale;
 
 import cn.yhq.pair.item.BaseTextPairItem;
-import cn.yhq.pair.item.PairIntercept;
+import cn.yhq.pair.item.Interceptor;
 
 /**
  * Created by Yanghuiqiang on 2016/11/17.
  */
 
-public class DateFormatIntercept<T extends BaseTextPairItem<T>> implements PairIntercept<T> {
+public class DateFormatIntercept<T extends BaseTextPairItem<T>> implements Interceptor<T> {
     private final static SimpleDateFormat mDateFormat = new SimpleDateFormat("yyyy年MM月dd日",
             Locale.getDefault());
     private SimpleDateFormat mSimpleDateFormat;
@@ -28,12 +28,12 @@ public class DateFormatIntercept<T extends BaseTextPairItem<T>> implements PairI
 
     @Override
     public T intercept(Chain<T> chain) throws Exception {
-        String text = chain.getItem().getText();
+        String text = chain.getPair().getText();
         if (TextUtils.isDigitsOnly(text)) {
             long time = Long.parseLong(text);
-            chain.getItem().setText(mSimpleDateFormat.format(new Date(time)));
+            chain.getPair().setText(mSimpleDateFormat.format(new Date(time)));
         }
-        return chain.getItem();
+        return chain.handle(chain.getPair());
     }
 
 }

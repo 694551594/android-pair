@@ -5,7 +5,6 @@ import android.widget.Switch;
 
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
-import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.item.SwitchPairItem;
 
 /**
@@ -13,10 +12,10 @@ import cn.yhq.pair.item.SwitchPairItem;
  *
  * @author Yanghuiqiang 2015-6-29
  */
-public class SwitchItemViewProvider extends BaseChildItemViewProvider<SwitchPairItem> {
+public class SwitchItemViewProvider extends BasePairItemViewProvider<SwitchPairItem> {
 
     @Override
-    public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, SwitchPairItem childEntity) {
+    public void setupItemView(ViewHolder viewHolder, int position, SwitchPairItem childEntity) {
         viewHolder.bindResId(R.id.switch_button)
                 .setChecked(childEntity.isChecked())
                 .setTag(childEntity)

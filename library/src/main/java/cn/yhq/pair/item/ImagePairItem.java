@@ -11,7 +11,7 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
     private int height;
 
     public ImagePairItem() {
-        super(PairItemType.IMAGE);
+        super(Type.IMAGE);
     }
 
     public int getResId() {

@@ -2,9 +2,6 @@ package cn.yhq.pair.item;
 
 import android.graphics.drawable.Drawable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cn.yhq.pair.action.PairAction;
 import cn.yhq.pair.action.PairClickAction;
 import cn.yhq.pair.action.PairPreferenceAction;
@@ -13,18 +10,15 @@ import cn.yhq.pair.action.PairPreferenceAction;
  * Created by Administrator on 2016/11/15.
  */
 
-public class PairItem<T extends PairItem<T>> {
+public class PairItem<T extends PairItem<T>> extends BasePair<T> {
     private int icon;
     private Drawable iconDrawable;
     private String key;
     private PairAction action;
-    private PairItemType type;
     private String description;
-    private List<PairIntercept> intercepts = new ArrayList<>();
-    private OnInvalidateListener onInvalidateListener;
 
-    public PairItem(PairItemType type) {
-        this.type = type;
+    public PairItem(Type type) {
+        super(type);
     }
 
     public boolean onClick() {
@@ -51,65 +45,6 @@ public class PairItem<T extends PairItem<T>> {
             }
         }
         return null;
-    }
-
-    protected void invalidate() {
-        if (onInvalidateListener != null) {
-            onInvalidateListener.onInvalidate();
-        }
-    }
-
-    public void setOnInvalidateListener(OnInvalidateListener onInvalidateListener) {
-        this.onInvalidateListener = onInvalidateListener;
-    }
-
-    public T intercept() {
-        try {
-            this.getDataWithInterceptorChain((T) this);
-        } catch (Exception e) {
-        }
-        return (T) this;
-    }
-
-    private T getDataWithInterceptorChain(T item) throws Exception {
-        PairIntercept.Chain<T> chain = new DefaultIntercept(0, item);
-        return chain.intercept(item);
-    }
-
-    class DefaultIntercept implements PairIntercept.Chain<T> {
-        private final int index;
-        private T item;
-
-        DefaultIntercept(int index, T item) {
-            this.index = index;
-            this.item = item;
-        }
-
-        @Override
-        public T getItem() {
-            return item;
-        }
-
-        @Override
-        public T intercept(T item) throws Exception {
-            if (index < intercepts.size()) {
-                PairIntercept.Chain chain = new DefaultIntercept(index + 1, item);
-                PairIntercept intercept = intercepts.get(index);
-                T interceptData = (T) intercept.intercept(chain);
-
-                if (interceptData == null) {
-                    throw new NullPointerException("intercept " + intercept + " returned null");
-                }
-
-                return interceptData;
-            }
-            return item;
-        }
-    }
-
-    public PairItem<T> addIntercept(PairIntercept intercept) {
-        this.intercepts.add(intercept);
-        return this;
     }
 
     public String getDescription() {
@@ -161,10 +96,6 @@ public class PairItem<T extends PairItem<T>> {
     public T setPreferenceAction(PairPreferenceAction action) {
         this.setAction(action);
         return (T) this;
-    }
-
-    public PairItemType getType() {
-        return type;
     }
 
 }

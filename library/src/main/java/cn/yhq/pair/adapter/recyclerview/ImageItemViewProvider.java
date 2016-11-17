@@ -7,13 +7,12 @@ import android.widget.ImageView;
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
 import cn.yhq.pair.item.ImagePairItem;
-import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.utils.DisplayUtils;
 
-public class ImageItemViewProvider extends BaseChildItemViewProvider<ImagePairItem> {
+public class ImageItemViewProvider extends BasePairItemViewProvider<ImagePairItem> {
 
     @Override
-    public void setupItemView(ViewHolder viewHolder, int groupPosition, PairCatalog groupEntity, int childPosition, ImagePairItem childEntity) {
+    public void setupItemView(ViewHolder viewHolder, int position, ImagePairItem childEntity) {
 
         ImageView imageView = viewHolder.bindResId(R.id.image).getView(R.id.image);
 
