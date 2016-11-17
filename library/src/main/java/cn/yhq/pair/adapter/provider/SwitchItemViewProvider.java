@@ -31,4 +31,9 @@ public class SwitchItemViewProvider extends BaseChildItemViewProvider<SwitchPair
                 });
 
     }
+
+    @Override
+    public int getItemViewStubLayoutId() {
+        return R.layout.switchbutton;
+    }
 }

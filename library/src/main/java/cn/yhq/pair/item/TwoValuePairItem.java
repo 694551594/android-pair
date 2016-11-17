@@ -7,7 +7,7 @@ import cn.yhq.pair.action.PairPreferenceAction;
  * Created by Administrator on 2016/11/15.
  */
 
-public class TwoValuePairItem<T> extends PairItem<TwoValuePairItem<T>> {
+public class TwoValuePairItem<T extends TwoValuePairItem<T>> extends PairItem<T> {
     private boolean checked;
 
     public TwoValuePairItem(PairItemType type) {
@@ -46,11 +46,11 @@ public class TwoValuePairItem<T> extends PairItem<TwoValuePairItem<T>> {
     }
 
     @Override
-    public TwoValuePairItem<T> setAction(PairAction action) {
+    public T setAction(PairAction action) {
         if (action instanceof PairPreferenceAction) {
-            this.addIntercept(new PairIntercept<TwoValuePairItem<T>>() {
+            this.addIntercept(new PairIntercept<T>() {
                 @Override
-                public TwoValuePairItem<T> intercept(Chain<TwoValuePairItem<T>> chain) throws Exception {
+                public T intercept(Chain<T> chain) throws Exception {
                     boolean checked = (boolean) getPreference();
                     chain.getItem().setChecked(checked);
                     return chain.getItem();

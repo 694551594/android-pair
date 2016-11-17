@@ -1,46 +1,36 @@
 package cn.yhq.pair.item;
 
 
-public class FieldPairItem extends PairItem<FieldPairItem> {
+import cn.yhq.pair.intercept.FieldParserIntercept;
+
+public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
     private Object entity;
     private String exp;
-    private String formatClass;
-    private String text;
+    private FieldParserIntercept intercept;
 
     public FieldPairItem() {
         super(PairItemType.FIELD);
+        intercept = new FieldParserIntercept();
+        this.addIntercept(intercept);
     }
 
     public Object getEntity() {
         return entity;
     }
 
-    public void setEntity(Object entity) {
+    public FieldPairItem setEntity(Object entity) {
         this.entity = entity;
+        this.intercept.setEntity(entity);
+        return this;
     }
 
     public String getExp() {
         return exp;
     }
 
-    public void setExp(String exp) {
+    public FieldPairItem setExp(String exp) {
         this.exp = exp;
-    }
-
-    public String getFormatClass() {
-        return formatClass;
-    }
-
-    public void setFormatClass(String formatClass) {
-        this.formatClass = formatClass;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public FieldPairItem setText(String text) {
-        this.text = text;
         return this;
     }
+
 }

@@ -11,6 +11,8 @@ import cn.yhq.pair.Pair;
 import cn.yhq.pair.action.PairActivityAction;
 import cn.yhq.pair.action.PairDialogAction;
 import cn.yhq.pair.action.PairPreferenceAction;
+import cn.yhq.pair.intercept.DateFormatIntercept;
+import cn.yhq.pair.item.FieldPairItem;
 import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.item.PairIntercept;
 import cn.yhq.pair.item.SwitchPairItem;
@@ -29,9 +31,21 @@ public class MainActivity extends BaseActivity {
         config.setSwipeBackWrapper(false);
     }
 
+    public static class User {
+        public String username;
+        public String password;
+    }
+
+    private User mUser;
+
     @Override
     protected void onViewCreated(Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
+
+        mUser = new User();
+        mUser.password = "密码";
+        mUser.username = "用户名";
+
         PairView pairView = this.getView(R.id.pairview);
 
         new Pair.Builder(this)
@@ -64,6 +78,10 @@ public class MainActivity extends BaseActivity {
                                         new TextPairItem()
                                                 .setKey("没有图标")
                                                 .setText("没有图标的文本哦"),
+                                        new TextPairItem()
+                                                .setKey("这是一个日期格式化的例子")
+                                                .setText(System.currentTimeMillis())
+                                                .addIntercept(new DateFormatIntercept<>()),
                                         new SwitchPairItem()
                                                 .setKey("测试Preference")
                                                 .setAction(new PairPreferenceAction(this, "test")),
@@ -77,8 +95,16 @@ public class MainActivity extends BaseActivity {
                                                     protected IDialog onCreateDialog(Context context) {
                                                         return DialogBuilder.messageDialog(context).setMessage("我是对话框哦").create();
                                                     }
-                                                })
-                                )
+                                                }),
+                                        new FieldPairItem()
+                                                .setKey("用户名哦")
+                                                .setEntity(mUser)
+                                                .setExp("${user.username}"),
+                                        new FieldPairItem()
+                                                .setExp("${user.password}")
+                                                .setEntity(mUser)
+                                                .setKey("密码哦")
+                                        )
                 )
                 .addCatalog(
                         new PairCatalog()

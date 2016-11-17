@@ -1,5 +1,6 @@
 package cn.yhq.pair.adapter.provider;
 
+import android.support.v7.widget.ViewStubCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -54,7 +55,14 @@ public abstract class BaseChildItemViewProvider<T extends PairItem> extends Chil
             viewHolder.setVisibility(View.VISIBLE);
         }
         viewHolder.setVisibility(View.GONE);
+
+        ViewStubCompat viewStub = viewHolder.getView(R.id.view_stub);
+        viewStub.setLayoutResource(getItemViewStubLayoutId());
+        viewStub.setVisibility(View.VISIBLE);
+
         this.setupItemView(viewHolder, groupPosition, groupEntity, childPosition, (T) childEntity);
     }
+
+    public abstract int getItemViewStubLayoutId();
 
 }
