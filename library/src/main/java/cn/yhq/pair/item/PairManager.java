@@ -23,6 +23,10 @@ public class PairManager {
         this.factory = factory;
     }
 
+    public static PairManager create(Context context, PairFactory factory) {
+        return new PairManager(context, factory);
+    }
+
     public void attach(PairView pairView) {
         PairAdapter adapter = this.createPairAdapter(factory);
         pairView.setAdapter(adapter);

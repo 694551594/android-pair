@@ -40,7 +40,7 @@ public class RecyclerActivity extends BaseActivity {
 
         PairView pairView = this.getView(R.id.pairview);
 
-        new PairManager(this, new PairFactory() {
+        PairManager.create(this, new PairFactory() {
             @Override
             protected void onCreate(PairFactory factory) {
                 this.newCatalog().setTitle("我是一组有图标的");
