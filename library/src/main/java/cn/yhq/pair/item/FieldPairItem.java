@@ -1,7 +1,7 @@
 package cn.yhq.pair.item;
 
 
-import cn.yhq.pair.intercept.FieldParserIntercept;
+import cn.yhq.pair.interceptor.FieldParserIntercept;
 
 public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
     private Object entity;

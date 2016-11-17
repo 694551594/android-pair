@@ -1,4 +1,4 @@
-package cn.yhq.pair.intercept;
+package cn.yhq.pair.interceptor;
 
 import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlContext;

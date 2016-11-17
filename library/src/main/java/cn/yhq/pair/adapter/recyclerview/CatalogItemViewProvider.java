@@ -22,7 +22,7 @@ public class CatalogItemViewProvider extends ItemViewProvider1<IPair> {
 
     @Override
     public int getItemViewLayoutId() {
-        return R.layout.pairitem_group_layout;
+        return R.layout.item_layout;
     }
 
 }

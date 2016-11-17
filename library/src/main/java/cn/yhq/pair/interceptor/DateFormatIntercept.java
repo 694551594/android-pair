@@ -1,4 +1,4 @@
-package cn.yhq.pair.intercept;
+package cn.yhq.pair.interceptor;
 
 import android.text.TextUtils;
 
