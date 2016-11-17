@@ -12,7 +12,9 @@ import cn.yhq.pair.action.PairActivityAction;
 import cn.yhq.pair.action.PairDialogAction;
 import cn.yhq.pair.action.PairPreferenceAction;
 import cn.yhq.pair.intercept.DateFormatIntercept;
+import cn.yhq.pair.item.CheckPairItem;
 import cn.yhq.pair.item.FieldPairItem;
+import cn.yhq.pair.item.ImagePairItem;
 import cn.yhq.pair.item.PairCatalog;
 import cn.yhq.pair.item.PairIntercept;
 import cn.yhq.pair.item.SwitchPairItem;
@@ -107,7 +109,8 @@ public class MainActivity extends BaseActivity {
                                         new SwitchPairItem()
                                                 .setKey("测试Preference")
                                                 .setAction(new PairPreferenceAction(this, "test")),
-                                        new SwitchPairItem().setChecked(true).setKey("哈哈")
+                                        new SwitchPairItem().setChecked(true).setKey("开关"),
+                                        new CheckPairItem().setChecked(false).setKey("选择框")
                                 )
                 ).addCatalog(
                         new PairCatalog()
@@ -119,7 +122,9 @@ public class MainActivity extends BaseActivity {
                                         new TextPairItem()
                                                 .setKey("这是一个日期格式化的例子")
                                                 .setText(System.currentTimeMillis())
-                                                .addIntercept(new DateFormatIntercept<>())
+                                                .addIntercept(new DateFormatIntercept<>()),
+                                        new ImagePairItem().setKey("后面是一张图片")
+                                                .setResId(R.drawable.ic_discovery_templet_shop)
                                 )
                 ).addCatalog(
                         new PairCatalog()

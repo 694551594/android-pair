@@ -8,6 +8,7 @@ import cn.yhq.adapter.expand.BaseExpandableListAdapter;
 import cn.yhq.adapter.expand.IChildItemViewProviderKeyPolicy;
 import cn.yhq.adapter.expand.IGroupItemViewProviderKeyPolicy;
 import cn.yhq.pair.adapter.provider.CatalogItemViewProvider;
+import cn.yhq.pair.adapter.provider.CheckboxItemViewProvider;
 import cn.yhq.pair.adapter.provider.ImageItemViewProvider;
 import cn.yhq.pair.adapter.provider.SwitchItemViewProvider;
 import cn.yhq.pair.adapter.provider.TextItemViewProvider;
@@ -66,6 +67,7 @@ public class PairAdapter extends BaseExpandableListAdapter<PairCatalog, PairItem
 
         this.register(ItemType.TYPE_IMAGE, new ImageItemViewProvider());
         this.register(ItemType.TYPE_SWITCH, new SwitchItemViewProvider());
+        this.register(ItemType.TYPE_CHECKBOX, new CheckboxItemViewProvider());
         this.register(ItemType.TYPE_TEXT, new TextItemViewProvider());
         this.register(ItemType.TYPE_CATALOG, new CatalogItemViewProvider());
     }
