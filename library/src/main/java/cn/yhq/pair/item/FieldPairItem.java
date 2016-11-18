@@ -2,8 +2,10 @@ package cn.yhq.pair.item;
 
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
+import cn.yhq.pair.R;
 import cn.yhq.pair.interceptor.FieldParserInterceptor;
 
 public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
@@ -12,6 +14,14 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
 
     public FieldPairItem(Context context, AttributeSet attrs) {
         super(context, Type.FIELD, attrs);
+
+        final TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.FieldPairItem);
+
+        this.exp = a.getString(R.styleable.FieldPairItem_exp);
+
+        a.recycle();
+
         this.addInterceptor(new FieldParserInterceptor());
     }
 

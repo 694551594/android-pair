@@ -12,16 +12,30 @@ import java.util.List;
 public class PairFactory {
     private List<IPair> pairs = new ArrayList<>();
     private Context context;
+    private OnPairCreateListener listener;
 
     public PairFactory(Context context) {
         this.context = context;
     }
 
-    PairGroup create() {
+    protected PairGroup create() {
         PairGroup pairGroup = onCreatePairGroup(context);
         pairGroup.addAllPair(pairs);
+        postPairCreate(pairGroup);
         pairGroup.refresh();
         return pairGroup;
+    }
+
+    private void postPairCreate(PairGroup pairGroup) {
+        for (int i = 0; i < pairGroup.getPairs().size(); i++) {
+            if (this.listener != null) {
+                this.listener.onCreate(i, pairGroup.getPairs().get(i));
+            }
+        }
+    }
+
+    protected void setOnPairCreateListener(OnPairCreateListener listener) {
+        this.listener = listener;
     }
 
     protected PairGroup onCreatePairGroup(Context context) {

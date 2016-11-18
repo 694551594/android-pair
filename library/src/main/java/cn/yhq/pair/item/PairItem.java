@@ -8,7 +8,6 @@ import android.util.AttributeSet;
 import cn.yhq.pair.R;
 import cn.yhq.pair.action.PairAction;
 import cn.yhq.pair.action.PairClickAction;
-import cn.yhq.pair.action.PairPreferenceAction;
 
 /**
  * Created by Administrator on 2016/11/15.
@@ -41,23 +40,6 @@ public class PairItem<T extends PairItem<T>> extends BasePair<T> {
             }
         }
         return false;
-    }
-
-    public void onSavePreference(Object value) {
-        if (action != null) {
-            if (action instanceof PairPreferenceAction) {
-                ((PairPreferenceAction) action).onSavePreference(value);
-            }
-        }
-    }
-
-    public Object getPreference() {
-        if (action != null) {
-            if (action instanceof PairPreferenceAction) {
-                return ((PairPreferenceAction) action).getPreference();
-            }
-        }
-        return null;
     }
 
     public String getDescription() {
@@ -106,9 +88,7 @@ public class PairItem<T extends PairItem<T>> extends BasePair<T> {
         return (T) this;
     }
 
-    public T setPreferenceAction(PairPreferenceAction action) {
-        this.setAction(action);
-        return (T) this;
+    public PairAction getAction() {
+        return action;
     }
-
 }

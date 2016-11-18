@@ -15,8 +15,20 @@
         <attr name="title" />
     </declare-styleable>
 
+    <declare-styleable name="FieldPairItem">
+        <attr name="exp" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="TwoStatePairItem">
         <attr name="checked" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="PreferenceAction">
+        <attr name="key"/>
+    </declare-styleable>
+
+    <declare-styleable name="ActivityAction">
+        <attr name="targetClass" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="ImagePairItem">

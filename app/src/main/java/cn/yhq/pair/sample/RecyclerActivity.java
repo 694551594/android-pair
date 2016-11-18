@@ -41,7 +41,7 @@ public class RecyclerActivity extends BaseActivity {
 
         PairView pairView = this.getView(R.id.pairview);
 
-        PairManager pairManager = PairManager.create(this, new PairFactory(this) {
+        PairManager.create(this, new PairFactory(this) {
             @Override
             protected PairGroup onCreatePairGroup(Context context) {
                 this.newCatalog().setTitle("我是一组有图标的");
@@ -90,7 +90,7 @@ public class RecyclerActivity extends BaseActivity {
                 this.newCatalog().setTitle("Preference测试");
                 this.newSwitchItem()
                         .setKey("测试Preference")
-                        .setAction(new PairPreferenceAction(getContext(), "test"));
+                        .setAction(new PairPreferenceAction("test"));
                 this.newSwitchItem()
                         .setChecked(true)
                         .setKey("开关");
@@ -122,9 +122,6 @@ public class RecyclerActivity extends BaseActivity {
                 return super.onCreatePairGroup(context);
             }
         }).attach(pairView);
-
-        mUser.password = "密码刷新了";
-        pairManager.refresh(18);
     }
 
     @Override

@@ -12,7 +12,7 @@ import cn.yhq.pair.action.PairPreferenceAction;
  * Created by Administrator on 2016/11/15.
  */
 
-public class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PairItem<T> {
+public class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PreferencePairItem<T> {
     private boolean checked;
 
     public TwoStatePairItem(Context context, Type type, AttributeSet attrs) {

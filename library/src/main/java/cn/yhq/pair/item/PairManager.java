@@ -27,7 +27,7 @@ public class PairManager {
         return new PairManager(context, factory);
     }
 
-    public <T extends IPair> PairManager attach(PairView pairView) {
+    public void attach(PairView pairView) {
         this.pairGroup = this.factory.create();
         this.pairGroup.setOnInvalidateListener(new OnInvalidateListener() {
             @Override
@@ -48,15 +48,21 @@ public class PairManager {
             }
         });
         pairView.setAdapter(adapter);
+    }
+
+    public PairManager refresh() {
+        pairGroup.refresh();
         return this;
     }
 
-    public void refresh() {
-        pairGroup.refresh();
+    public PairManager refresh(int index) {
+        pairGroup.refresh(index);
+        return this;
     }
 
-    public void refresh(int index) {
-        pairGroup.refresh(index);
+    public PairManager setOnPairCreateListener(OnPairCreateListener listener) {
+        this.factory.setOnPairCreateListener(listener);
+        return this;
     }
 
 }

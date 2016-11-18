@@ -1,6 +1,7 @@
 package cn.yhq.pair.xml;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.XmlResourceParser;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,8 +16,12 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 
+import cn.yhq.pair.action.PairActivityAction;
+import cn.yhq.pair.action.PairIntentAction;
+import cn.yhq.pair.action.PairPreferenceAction;
 import cn.yhq.pair.item.IPair;
 import cn.yhq.pair.item.PairGroup;
+import cn.yhq.pair.item.PairItem;
 
 
 /**
@@ -30,6 +35,12 @@ public class PairInflater {
     private final Context mContext;
     private final Object[] mConstructorArgs = new Object[2];
     private String[] mDefaultPackages;
+    private static final String INTENT_TAG_NAME = "intent";
+    private static final String EXTRA_TAG_NAME = "extra";
+    private static final String PREFERENCE_ACTION_TAG_NAME = "PairPreferenceAction";
+    private static final String INTENT_ACTION_TAG_NAME = "PairIntentAction";
+    private static final String ACTIVITY_ACTION_TAG_NAME = "PairActivityAction";
+    private static final String DIALOG_ACTION_TAG_NAME = "PairDialogAction";
 
     public PairInflater(Context context) {
         mContext = context;
@@ -187,11 +198,51 @@ public class PairInflater {
             }
 
             final String name = parser.getName();
+            if (INTENT_ACTION_TAG_NAME.equals(name)) {
 
-            final IPair item = createItemFromTag(name, attrs);
-            ((PairGroup) parent).addPair(item);
-            rInflate(parser, item, attrs);
+            } else if (ACTIVITY_ACTION_TAG_NAME.equals(name)) {
+                if (parent instanceof PairItem) {
+                    PairActivityAction action = PairActivityAction.parseAction(mContext, parser, attrs);
+                    ((PairItem) parent).setAction(action);
+                }
+            } else if (INTENT_TAG_NAME.equals(name)) {
+                final Intent intent;
+
+                try {
+                    intent = Intent.parseIntent(mContext.getResources(), parser, attrs);
+                } catch (IOException e) {
+                    XmlPullParserException ex = new XmlPullParserException(
+                            "Error parsing preference");
+                    ex.initCause(e);
+                    throw ex;
+                }
+
+                if (parent instanceof PairItem) {
+                    ((PairItem) parent).setAction(new PairIntentAction(intent));
+                }
+
+            } else if (PREFERENCE_ACTION_TAG_NAME.equals(name)) {
+                if (parent instanceof PairItem) {
+                    PairPreferenceAction action = PairPreferenceAction.parseAction(mContext, parser, attrs);
+                    ((PairItem) parent).setAction(action);
+                }
+            } else {
+                final IPair item = createItemFromTag(name, attrs);
+                ((PairGroup) parent).addPair(item);
+                rInflate(parser, item, attrs);
+            }
+
         }
 
+    }
+
+    private static void skipCurrentTag(XmlPullParser parser)
+            throws XmlPullParserException, IOException {
+        int outerDepth = parser.getDepth();
+        int type;
+        do {
+            type = parser.next();
+        } while (type != XmlPullParser.END_DOCUMENT
+                && (type != XmlPullParser.END_TAG || parser.getDepth() > outerDepth));
     }
 }
