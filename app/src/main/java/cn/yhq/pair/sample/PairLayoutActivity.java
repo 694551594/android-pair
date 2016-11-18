@@ -33,9 +33,9 @@ public class PairLayoutActivity extends BaseActivity {
         PairManager.create(this, new XmlPairFactory(this, R.xml.sample))
                 .setOnPairCreateListener(new OnPairCreateListener() {
                     @Override
-                    public void onCreate(int index, IPair pair) {
-                        switch (index) {
-                            case 5:
+                    public void onCreate(int id, IPair pair) {
+                        switch (id) {
+                            case R.id.pair_interceptor:
                                 ((TextPairItem) pair).addInterceptor(new Interceptor<TextPairItem>() {
                                     @Override
                                     public TextPairItem intercept(Chain<TextPairItem> chain) throws Exception {
@@ -44,7 +44,7 @@ public class PairLayoutActivity extends BaseActivity {
                                     }
                                 });
                                 break;
-                            case 6:
+                            case R.id.pair_dialog:
                                 ((TextPairItem) pair).setAction(new PairDialogAction(getContext()) {
 
                                     @Override
@@ -56,11 +56,11 @@ public class PairLayoutActivity extends BaseActivity {
                                     }
                                 });
                                 break;
-                            case 15:
+                            case R.id.pair_date_format:
                                 ((TextPairItem) pair).setText(System.currentTimeMillis()).addInterceptor(new DateFormatInterceptor<TextPairItem>());
                                 break;
-                            case 18:
-                            case 19:
+                            case R.id.pair_field_username:
+                            case R.id.pair_field_password:
                                 RecyclerActivity.User mUser = new RecyclerActivity.User();
                                 mUser.password = "123456";
                                 mUser.username = "694551594";

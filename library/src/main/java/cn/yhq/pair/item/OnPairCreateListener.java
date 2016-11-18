@@ -6,6 +6,6 @@ package cn.yhq.pair.item;
 
 public interface OnPairCreateListener {
 
-    void onCreate(int index, IPair pair);
+    void onCreate(int id, IPair pair);
 
 }

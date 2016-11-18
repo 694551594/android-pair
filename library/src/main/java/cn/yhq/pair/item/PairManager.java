@@ -55,8 +55,8 @@ public class PairManager {
         return this;
     }
 
-    public PairManager refresh(int index) {
-        pairGroup.refresh(index);
+    public PairManager refresh(int id) {
+        pairGroup.refresh(id);
         return this;
     }
 

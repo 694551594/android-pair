@@ -27,9 +27,9 @@ public class PairFactory {
     }
 
     private void postPairCreate(PairGroup pairGroup) {
-        for (int i = 0; i < pairGroup.getPairs().size(); i++) {
+        for (IPair pair : pairGroup.getPairs()) {
             if (this.listener != null) {
-                this.listener.onCreate(i, pairGroup.getPairs().get(i));
+                this.listener.onCreate(pair.getId(), pair);
             }
         }
     }

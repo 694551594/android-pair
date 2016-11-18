@@ -1,16 +1,20 @@
 package cn.yhq.pair.item;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.yhq.pair.R;
 
 /**
  * Created by Administrator on 2016/11/17.
  */
 
 public abstract class BasePair<T extends IPair> implements IPair {
+    private int id;
     private Type type;
     private List<Interceptor<T>> interceptors = new ArrayList<>();
     private OnInvalidateListener onInvalidateListener;
@@ -19,10 +23,25 @@ public abstract class BasePair<T extends IPair> implements IPair {
     public BasePair(Context context, Type type, AttributeSet attrs) {
         this.context = context;
         this.type = type;
+
+        final TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.Pair);
+
+        this.id = a.getResourceId(R.styleable.Pair_id, 0);
+
+        a.recycle();
     }
 
     public Context getContext() {
         return context;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

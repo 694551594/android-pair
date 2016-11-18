@@ -50,17 +50,25 @@ public class PairGroup extends BasePair<PairGroup> {
         }
     }
 
-    private void intercept(int index) {
-        pairs.get(index).intercept();
+    private void intercept(int id) {
+        for (IPair pair : pairs) {
+            if (pair.getId() == id) {
+                pair.intercept();
+            }
+        }
     }
 
-    private void invalidate(int index) {
-        pairs.get(index).invalidate();
+    private void invalidate(int id) {
+        for (IPair pair : pairs) {
+            if (pair.getId() == id) {
+                pair.invalidate();
+            }
+        }
     }
 
-    public void refresh(int index) {
-        intercept(index);
-        invalidate(index);
+    public void refresh(int id) {
+        intercept(id);
+        invalidate(id);
     }
 
     public void refresh() {

@@ -8,6 +8,8 @@ public interface IPair {
 
     Type getType();
 
+    int getId();
+
     void intercept();
 
     void invalidate();

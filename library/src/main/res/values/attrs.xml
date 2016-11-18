@@ -2,6 +2,7 @@
 <resources>
 
     <declare-styleable name="Pair">
+        <attr name="id" format="integer"/>
         <attr name="icon" />
         <attr name="key" format="string" />
         <attr name="description" format="string" />
