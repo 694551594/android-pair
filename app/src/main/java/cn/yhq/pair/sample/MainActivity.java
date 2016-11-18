@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity {
 //                                            .setText("朋友圈")
 //                                            .setKey("拦截器设置的文本")
 //                                            .setDescription("之前的文本为：朋友圈")
-//                                            .addIntercept(new PairIntercept<TextPairItem>() {
+//                                            .addInterceptor(new PairIntercept<TextPairItem>() {
 //                                                @Override
 //                                                public TextPairItem intercept(Chain<TextPairItem> chain) throws Exception {
 //                                                    chain.getItem().setText("我是拦截器设置的文本");
@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity {
 //                                        new TextPairItem()
 //                                                .setKey("这是一个日期格式化的例子")
 //                                                .setText(System.currentTimeMillis())
-//                                                .addIntercept(new DateFormatIntercept<>()),
+//                                                .addInterceptor(new DateFormatInterceptor<>()),
 //                                        new ImagePairItem().setKey("后面是一张图片")
 //                                                .setResId(R.drawable.ic_discovery_templet_shop)
 //                                )

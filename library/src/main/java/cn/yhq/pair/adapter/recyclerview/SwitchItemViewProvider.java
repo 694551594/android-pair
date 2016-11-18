@@ -12,10 +12,12 @@ import cn.yhq.pair.item.SwitchPairItem;
  *
  * @author Yanghuiqiang 2015-6-29
  */
-public class SwitchItemViewProvider extends BasePairItemViewProvider<SwitchPairItem> {
+public class SwitchItemViewProvider extends BaseItemViewProvider<SwitchPairItem> {
 
     @Override
     public void setupItemView(ViewHolder viewHolder, int position, SwitchPairItem childEntity) {
+        super.setupItemView(viewHolder, position, childEntity);
+
         viewHolder.bindResId(R.id.switch_button)
                 .setChecked(childEntity.isChecked())
                 .setTag(childEntity)

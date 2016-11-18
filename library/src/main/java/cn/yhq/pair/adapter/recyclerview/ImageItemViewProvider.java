@@ -9,10 +9,11 @@ import cn.yhq.pair.R;
 import cn.yhq.pair.item.ImagePairItem;
 import cn.yhq.pair.utils.DisplayUtils;
 
-public class ImageItemViewProvider extends BasePairItemViewProvider<ImagePairItem> {
+public class ImageItemViewProvider extends BaseItemViewProvider<ImagePairItem> {
 
     @Override
     public void setupItemView(ViewHolder viewHolder, int position, ImagePairItem childEntity) {
+        super.setupItemView(viewHolder, position, childEntity);
 
         ImageView imageView = viewHolder.bindResId(R.id.image).getView(R.id.image);
 

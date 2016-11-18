@@ -15,7 +15,7 @@ import cn.yhq.pair.item.Interceptor;
  * Created by Yanghuiqiang on 2016/11/17.
  */
 
-public class FieldParserIntercept implements Interceptor<FieldPairItem> {
+public class FieldParserInterceptor implements Interceptor<FieldPairItem> {
     private JexlContext jexlContext = new MapContext();
     private JexlEngine jexlEngine = new JexlBuilder().create();
     private JxltEngine jxltEngine = jexlEngine.createJxltEngine();

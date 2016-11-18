@@ -7,31 +7,32 @@ import java.util.List;
  * Created by Administrator on 2016/11/17.
  */
 
-public abstract class BasePair<T extends BasePair<T>> implements IPair {
+public abstract class BasePair<T extends IPair> implements IPair {
     private Type type;
-    private List<Interceptor<T>> intercepts = new ArrayList<>();
-    private OnInvalidateListener onInvalidateListener;
+    private List<Interceptor<T>> interceptors = new ArrayList<>();
+    private OnInvalidateListener<T> onInvalidateListener;
 
     public BasePair(Type type) {
         this.type = type;
     }
 
-    protected void invalidate() {
+    @Override
+    public void invalidate() {
         if (onInvalidateListener != null) {
-            onInvalidateListener.onInvalidate(this);
+            onInvalidateListener.onInvalidate((T) this);
         }
     }
 
-    public void setOnInvalidateListener(OnInvalidateListener onInvalidateListener) {
+    protected void setOnInvalidateListener(OnInvalidateListener<T> onInvalidateListener) {
         this.onInvalidateListener = onInvalidateListener;
     }
 
-    public T intercept() {
+    @Override
+    public void intercept() {
         try {
             this.getDataWithInterceptorChain((T) this);
         } catch (Exception e) {
         }
-        return (T) this;
     }
 
     private T getDataWithInterceptorChain(T item) throws Exception {
@@ -55,9 +56,9 @@ public abstract class BasePair<T extends BasePair<T>> implements IPair {
 
         @Override
         public T handle(T pair) throws Exception {
-            if (index < intercepts.size()) {
+            if (index < interceptors.size()) {
                 Interceptor.Chain<T> chain = new DefaultInterceptor(index + 1, pair);
-                Interceptor<T> intercept = intercepts.get(index);
+                Interceptor<T> intercept = interceptors.get(index);
                 T interceptData = intercept.intercept(chain);
 
                 if (interceptData == null) {
@@ -70,8 +71,8 @@ public abstract class BasePair<T extends BasePair<T>> implements IPair {
         }
     }
 
-    public T addIntercept(Interceptor<T> intercept) {
-        this.intercepts.add(intercept);
+    public T addInterceptor(Interceptor<T> interceptor) {
+        this.interceptors.add(interceptor);
         return (T) this;
     }
 

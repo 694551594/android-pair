@@ -5,40 +5,35 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 
-import cn.yhq.adapter.recycler.ItemViewProvider1;
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
-import cn.yhq.pair.item.IPair;
 import cn.yhq.pair.item.PairItem;
 
 
-public abstract class BasePairItemViewProvider<T extends PairItem<T>> extends ItemViewProvider1<IPair> {
+public abstract class BaseItemViewProvider<T extends PairItem<T>> extends PairItemViewProvider<T> {
 
     @Override
     public int getItemViewLayoutId() {
-        return R.layout.catalog_layout;
+        return R.layout.item_layout;
     }
 
-    public abstract void setupItemView(ViewHolder viewHolder, int position, T childEntity);
-
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position, IPair entity) {
-        PairItem<T> item = (PairItem<T>) entity;
+    public void setupItemView(ViewHolder viewHolder, int position, T entity) {
         // key值
-        String key = item.getKey();
+        String key = entity.getKey();
         viewHolder.setText(R.id.key, Html.fromHtml(key));
         // 图标
         viewHolder.bindResId(R.id.icon).setVisibility(View.VISIBLE);
-        int iconRes = item.getIcon();
+        int iconRes = entity.getIcon();
         if (iconRes != 0) {
             viewHolder.setImage(iconRes);
-        } else if (item.getIconDrawable() != null) {
-            viewHolder.setImage(item.getIconDrawable());
+        } else if (entity.getIconDrawable() != null) {
+            viewHolder.setImage(entity.getIconDrawable());
         } else {
             viewHolder.setVisibility(View.GONE);
         }
         viewHolder.bindResId(R.id.description).setVisibility(View.VISIBLE);
-        String description = item.getDescription();
+        String description = entity.getDescription();
         if (TextUtils.isEmpty(description)) {
             viewHolder.setText(description).setVisibility(View.GONE);
         } else {
@@ -48,8 +43,6 @@ public abstract class BasePairItemViewProvider<T extends PairItem<T>> extends It
         ViewStubCompat viewStub = viewHolder.getView(R.id.view_stub);
         viewStub.setLayoutResource(getItemViewStubLayoutId());
         viewStub.setVisibility(View.VISIBLE);
-
-        this.setupItemView(viewHolder, position, (T) entity);
     }
 
     public abstract int getItemViewStubLayoutId();

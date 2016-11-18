@@ -12,17 +12,13 @@ public abstract class PairFactory {
 
     private void intercept() {
         for (IPair pair : pairs) {
-            if (pair instanceof BasePair<?>) {
-                ((BasePair<?>) pair).intercept();
-            }
+            pair.intercept();
         }
     }
 
     private void invalidate() {
         for (IPair pair : pairs) {
-            if (pair instanceof BasePair<?>) {
-                ((BasePair<?>) pair).invalidate();
-            }
+            pair.invalidate();
         }
     }
 
@@ -32,11 +28,9 @@ public abstract class PairFactory {
         return this.pairs;
     }
 
-    void setOnInvalidateListener(OnInvalidateListener listener) {
+    <T extends IPair> void setOnInvalidateListener(OnInvalidateListener<T> listener) {
         for (IPair pair : pairs) {
-            if (pair instanceof BasePair<?>) {
-                ((BasePair<?>) pair).setOnInvalidateListener(listener);
-            }
+            ((BasePair<T>) pair).setOnInvalidateListener(listener);
         }
     }
 

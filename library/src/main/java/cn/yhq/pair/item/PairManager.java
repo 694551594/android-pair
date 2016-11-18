@@ -17,8 +17,9 @@ import cn.yhq.pair.ui.recyclerview.PairView;
 public class PairManager {
     private Context context;
     private PairFactory factory;
+    private PairAdapter adapter;
 
-    public PairManager(Context context, PairFactory factory) {
+    PairManager(Context context, PairFactory factory) {
         this.context = context;
         this.factory = factory;
     }
@@ -27,8 +28,25 @@ public class PairManager {
         return new PairManager(context, factory);
     }
 
-    public void attach(PairView pairView) {
-        PairAdapter adapter = this.createPairAdapter(factory);
+    public <T extends IPair>void attach(PairView pairView) {
+        this.factory.setOnInvalidateListener(new OnInvalidateListener<T>() {
+            @Override
+            public void onInvalidate(T pair) {
+                adapter.notifyItemChanged(adapter.getListData().indexOf(pair));
+            }
+        });
+        List<IPair> pairs = factory.create();
+        this.adapter = new PairAdapter(context, pairs);
+        this.adapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
+            @Override
+            public void onRecyclerViewItemClick(View itemView, int position) {
+                IPair pair = adapter.getItem(position);
+                if (pair.getType() != BasePair.Type.CATALOG) {
+                    PairItem<?> item = (PairItem<?>) pair;
+                    item.onClick();
+                }
+            }
+        });
         pairView.setAdapter(adapter);
     }
 
@@ -36,25 +54,4 @@ public class PairManager {
         factory.refresh();
     }
 
-    public PairAdapter createPairAdapter(PairFactory factory) {
-        final List<IPair> pairs = factory.create();
-        final PairAdapter adapter = new PairAdapter(context, pairs);
-        adapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
-            @Override
-            public void onRecyclerViewItemClick(View itemView, int position) {
-                IPair pair = pairs.get(position);
-                if (pair.getType() != BasePair.Type.CATALOG) {
-                    PairItem<?> item = (PairItem<?>) pair;
-                    item.onClick();
-                }
-            }
-        });
-        factory.setOnInvalidateListener(new OnInvalidateListener<IPair>() {
-            @Override
-            public void onInvalidate(IPair pair) {
-                adapter.notifyItemChanged(pairs.indexOf(pair));
-            }
-        });
-        return adapter;
-    }
 }

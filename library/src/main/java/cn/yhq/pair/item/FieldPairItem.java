@@ -1,7 +1,7 @@
 package cn.yhq.pair.item;
 
 
-import cn.yhq.pair.interceptor.FieldParserIntercept;
+import cn.yhq.pair.interceptor.FieldParserInterceptor;
 
 public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
     private Object entity;
@@ -9,7 +9,7 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
 
     public FieldPairItem() {
         super(Type.FIELD);
-        this.addIntercept(new FieldParserIntercept());
+        this.addInterceptor(new FieldParserInterceptor());
     }
 
     public Object getEntity() {

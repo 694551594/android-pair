@@ -12,10 +12,11 @@ import cn.yhq.pair.item.CheckPairItem;
  *
  * @author Yanghuiqiang 2015-6-29
  */
-public class CheckboxItemViewProvider extends BasePairItemViewProvider<CheckPairItem> {
+public class CheckboxItemViewProvider extends BaseItemViewProvider<CheckPairItem> {
 
     @Override
     public void setupItemView(ViewHolder viewHolder, int position, CheckPairItem childEntity) {
+        super.setupItemView(viewHolder, position, childEntity);
         viewHolder.bindResId(R.id.checkbox)
                 .setChecked(childEntity.isChecked())
                 .setTag(childEntity)

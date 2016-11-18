@@ -8,6 +8,10 @@ public interface IPair {
 
     Type getType();
 
+    void intercept();
+
+    void invalidate();
+
     enum Type {
         CATALOG, TEXT, SWITCH, FIELD, IMAGE, CHECKBOX
     }

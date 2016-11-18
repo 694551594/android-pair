@@ -48,7 +48,7 @@ public class TwoValuePairItem<T extends TwoValuePairItem<T>> extends PairItem<T>
     @Override
     public T setAction(PairAction action) {
         if (action instanceof PairPreferenceAction) {
-            this.addIntercept(new Interceptor<T>() {
+            this.addInterceptor(new Interceptor<T>() {
                 @Override
                 public T intercept(Chain<T> chain) throws Exception {
                     boolean checked = (boolean) getPreference();

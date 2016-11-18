@@ -9,7 +9,7 @@ import cn.yhq.dialog.core.IDialog;
 import cn.yhq.pair.action.PairActivityAction;
 import cn.yhq.pair.action.PairDialogAction;
 import cn.yhq.pair.action.PairPreferenceAction;
-import cn.yhq.pair.interceptor.DateFormatIntercept;
+import cn.yhq.pair.interceptor.DateFormatInterceptor;
 import cn.yhq.pair.item.Interceptor;
 import cn.yhq.pair.item.PairFactory;
 import cn.yhq.pair.item.PairManager;
@@ -44,16 +44,22 @@ public class RecyclerActivity extends BaseActivity {
             @Override
             protected void onCreate(PairFactory factory) {
                 this.newCatalog().setTitle("我是一组有图标的");
-                this.newTextItem().setIcon(R.drawable.find_more_friend_scan).setKey("扫一扫");
-                this.newTextItem().setIcon(R.drawable.find_more_friend_photograph_icon).setKey("朋友圈");
-                this.newTextItem().setIcon(R.drawable.find_more_friend_shake).setKey("摇一摇");
+                this.newTextItem()
+                        .setIcon(R.drawable.find_more_friend_scan)
+                        .setKey("扫一扫");
+                this.newTextItem()
+                        .setIcon(R.drawable.find_more_friend_photograph_icon)
+                        .setKey("朋友圈");
+                this.newTextItem()
+                        .setIcon(R.drawable.find_more_friend_shake)
+                        .setKey("摇一摇");
 
                 this.newCatalog().setTitle("拦截器测试");
                 this.newTextItem().setIcon(R.drawable.find_more_friend_photograph_icon)
                         .setText("朋友圈")
                         .setKey("拦截器设置的文本")
                         .setDescription("之前的文本为：朋友圈")
-                        .addIntercept(new Interceptor<TextPairItem>() {
+                        .addInterceptor(new Interceptor<TextPairItem>() {
                             @Override
                             public TextPairItem intercept(Chain<TextPairItem> chain) throws Exception {
                                 chain.getPair().setText("我是拦截器设置的文本");
@@ -78,8 +84,12 @@ public class RecyclerActivity extends BaseActivity {
                 this.newSwitchItem()
                         .setKey("测试Preference")
                         .setAction(new PairPreferenceAction(getContext(), "test"));
-                this.newSwitchItem().setChecked(true).setKey("开关");
-                this.newCheckboxItem().setChecked(false).setKey("选择框");
+                this.newSwitchItem()
+                        .setChecked(true)
+                        .setKey("开关");
+                this.newCheckboxItem()
+                        .setChecked(false)
+                        .setKey("选择框");
 
                 this.newCatalog().setTitle("没图标的");
                 this.newTextItem()
@@ -88,7 +98,7 @@ public class RecyclerActivity extends BaseActivity {
                 this.newTextItem()
                         .setKey("这是一个日期格式化的例子")
                         .setText(System.currentTimeMillis())
-                        .addIntercept(new DateFormatIntercept<TextPairItem>());
+                        .addInterceptor(new DateFormatInterceptor<TextPairItem>());
                 this.newImageItem().setKey("后面是一张图片")
                         .setResId(R.drawable.ic_discovery_templet_shop);
 

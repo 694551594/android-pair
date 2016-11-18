@@ -13,16 +13,16 @@ import cn.yhq.pair.item.Interceptor;
  * Created by Yanghuiqiang on 2016/11/17.
  */
 
-public class DateFormatIntercept<T extends BaseTextPairItem<T>> implements Interceptor<T> {
+public class DateFormatInterceptor<T extends BaseTextPairItem<T>> implements Interceptor<T> {
     private final static SimpleDateFormat mDateFormat = new SimpleDateFormat("yyyy年MM月dd日",
             Locale.getDefault());
     private SimpleDateFormat mSimpleDateFormat;
 
-    public DateFormatIntercept(SimpleDateFormat simpleDateFormat) {
+    public DateFormatInterceptor(SimpleDateFormat simpleDateFormat) {
         this.mSimpleDateFormat = simpleDateFormat;
     }
 
-    public DateFormatIntercept() {
+    public DateFormatInterceptor() {
         this(mDateFormat);
     }
 

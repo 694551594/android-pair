@@ -7,10 +7,12 @@ import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
 import cn.yhq.pair.item.TextPairItem;
 
-public class TextItemViewProvider extends BasePairItemViewProvider<TextPairItem> {
+public class TextItemViewProvider extends BaseItemViewProvider<TextPairItem> {
 
     @Override
     public void setupItemView(ViewHolder viewHolder, int position, TextPairItem childEntity) {
+        super.setupItemView(viewHolder, position, childEntity);
+
         String value = childEntity.getText();
 
         viewHolder.bindResId(R.id.text)
