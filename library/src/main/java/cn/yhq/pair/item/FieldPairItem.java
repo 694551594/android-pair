@@ -35,6 +35,7 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
 
     public FieldPairItem setEntity(Object entity) {
         this.entity = entity;
+        this.invalidate();
         return this;
     }
 
@@ -44,6 +45,7 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
 
     public FieldPairItem setExp(String exp) {
         this.exp = exp;
+        this.invalidate();
         return this;
     }
 

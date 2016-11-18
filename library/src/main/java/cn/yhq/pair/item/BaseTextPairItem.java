@@ -30,12 +30,13 @@ public class BaseTextPairItem<T extends BaseTextPairItem<T>> extends PairItem<T>
 
     public T setText(String text) {
         this.text = text;
+        this.invalidate();
         return (T) this;
     }
 
     public T setText(Object text) {
         this.text = text.toString();
-        return (T) this;
+        return setText(this.text);
     }
 
 }

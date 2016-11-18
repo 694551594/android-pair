@@ -36,6 +36,15 @@ public class PairGroup extends BasePair<PairGroup> {
         return pairs;
     }
 
+    public <T extends IPair> T getPair(int id) {
+        for (IPair pair : pairs) {
+            if (pair.getId() == id) {
+                return (T) pair;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void intercept() {
         for (IPair pair : pairs) {

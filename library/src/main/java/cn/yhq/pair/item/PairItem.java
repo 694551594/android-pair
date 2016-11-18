@@ -48,6 +48,7 @@ public class PairItem<T extends PairItem<T>> extends BasePair<T> {
 
     public T setDescription(String description) {
         this.description = description;
+        this.invalidate();
         return (T) this;
     }
 
@@ -61,11 +62,13 @@ public class PairItem<T extends PairItem<T>> extends BasePair<T> {
 
     public T setIconDrawable(Drawable iconDrawable) {
         this.iconDrawable = iconDrawable;
+        this.invalidate();
         return (T) this;
     }
 
     public T setIcon(int icon) {
         this.icon = icon;
+        this.invalidate();
         return (T) this;
     }
 
@@ -75,6 +78,7 @@ public class PairItem<T extends PairItem<T>> extends BasePair<T> {
 
     public T setKey(String key) {
         this.key = key;
+        this.invalidate();
         return (T) this;
     }
 

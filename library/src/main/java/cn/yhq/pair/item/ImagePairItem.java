@@ -40,6 +40,7 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
 
     public ImagePairItem setResId(int resId) {
         this.resId = resId;
+        this.invalidate();
         return this;
     }
 
@@ -49,6 +50,7 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
 
     public ImagePairItem setUrl(String url) {
         this.url = url;
+        this.invalidate();
         return this;
     }
 
@@ -58,6 +60,7 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
 
     public ImagePairItem setWidth(int width) {
         this.width = width;
+        this.invalidate();
         return this;
     }
 
@@ -67,6 +70,7 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
 
     public ImagePairItem setHeight(int height) {
         this.height = height;
+        this.invalidate();
         return this;
     }
 }

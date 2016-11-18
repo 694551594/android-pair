@@ -27,6 +27,10 @@ public class PairManager {
         return new PairManager(context, factory);
     }
 
+    public <T extends IPair> T getPair(int id) {
+       return pairGroup.getPair(id);
+    }
+
     public void attach(PairView pairView) {
         this.pairGroup = this.factory.create();
         this.pairGroup.setOnInvalidateListener(new OnInvalidateListener() {

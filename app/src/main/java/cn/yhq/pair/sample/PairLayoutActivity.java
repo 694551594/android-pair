@@ -30,7 +30,7 @@ public class PairLayoutActivity extends BaseActivity {
 
         PairView pairView = this.getView(R.id.pairview);
 
-        PairManager.create(this, new XmlPairFactory(this, R.xml.sample))
+        PairManager pairManager = PairManager.create(this, new XmlPairFactory(this, R.xml.sample))
                 .setOnPairCreateListener(new OnPairCreateListener() {
                     @Override
                     public void onCreate(int id, IPair pair) {
@@ -68,8 +68,10 @@ public class PairLayoutActivity extends BaseActivity {
                                 break;
                         }
                     }
-                }).attach(pairView);
-
+                });
+        pairManager.attach(pairView);
+        TextPairItem item = pairManager.getPair(R.id.pair_dialog);
+        item.setText("我改变了哦");
     }
 
     @Override

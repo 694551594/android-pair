@@ -34,6 +34,7 @@ public class PairCatalog extends BasePair<PairCatalog> {
 
     public PairCatalog setTitle(String title) {
         this.title = title;
+        this.invalidate();
         return this;
     }
 

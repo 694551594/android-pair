@@ -36,6 +36,7 @@ public class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PreferenceP
         }
         this.checked = checked;
         onCheckedChange();
+        this.invalidate();
         return (T) this;
     }
 
@@ -52,7 +53,6 @@ public class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PreferenceP
         boolean handle = super.performClick();
         if (!handle) {
             this.toggle();
-            this.invalidate();
         }
         return handle;
     }
