@@ -1,7 +1,11 @@
 package cn.yhq.pair.item;
 
+import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 
+import cn.yhq.pair.R;
 import cn.yhq.pair.action.PairAction;
 import cn.yhq.pair.action.PairClickAction;
 import cn.yhq.pair.action.PairPreferenceAction;
@@ -17,11 +21,20 @@ public class PairItem<T extends PairItem<T>> extends BasePair<T> {
     private PairAction action;
     private String description;
 
-    public PairItem(Type type) {
-        super(type);
+    public PairItem(Context context, Type type, AttributeSet attrs) {
+        super(context, type, attrs);
+
+        final TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.Pair);
+
+        this.icon = a.getResourceId(R.styleable.Pair_icon, 0);
+        this.key = a.getString(R.styleable.Pair_key);
+        this.description = a.getString(R.styleable.Pair_description);
+
+        a.recycle();
     }
 
-    public boolean onClick() {
+    public boolean performClick() {
         if (action != null) {
             if (action instanceof PairClickAction) {
                 return ((PairClickAction) action).onClick(this);

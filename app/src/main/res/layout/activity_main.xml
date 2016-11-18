@@ -6,8 +6,26 @@
     android:layout_height="match_parent"
     tools:context="cn.yhq.pair.sample.MainActivity">
 
-    <cn.yhq.pair.ui.expandable.PairView
-        android:id="@+id/pairview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="代码创建"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="布局创建"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/button2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

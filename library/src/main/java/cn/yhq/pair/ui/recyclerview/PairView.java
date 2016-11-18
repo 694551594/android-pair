@@ -5,14 +5,11 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
-
-import cn.yhq.pair.adapter.recyclerview.PairAdapter;
-import cn.yhq.pair.item.IPair;
-import cn.yhq.pair.utils.DisplayUtils;
 
 
 /**
@@ -62,40 +59,19 @@ public class PairView extends RecyclerView {
             super.onDraw(c, parent, state);
             final int left = parent.getPaddingLeft();
             final int right = parent.getWidth() - parent.getPaddingRight();
-
-            int position = state.getTargetScrollPosition();
-
-            if (position == RecyclerView.NO_POSITION) {
-                return;
+            final int childCount = parent.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                final View child = parent.getChildAt(i);
+                final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
+                        .getLayoutParams();
+                final int top = child.getBottom() + params.bottomMargin +
+                        Math.round(ViewCompat.getTranslationY(child));
+                final int bottom = top + mDivider.getIntrinsicHeight();
+                int offset = 0;
+                // DisplayUtils.dp2Px(parent.getContext(), 16);
+                mDivider.setBounds(left + offset, top, right - offset, bottom);
+                mDivider.draw(c);
             }
-
-            int count = state.getItemCount();
-            PairAdapter adapter = (PairAdapter) parent.getAdapter();
-            IPair pair = adapter.getItem(position);
-            if (pair.getType() == IPair.Type.CATALOG) {
-                return;
-            }
-            if (position == count - 1) {
-                return;
-            }
-            if (position < count - 1) {
-                IPair nextPair = adapter.getItem(position + 1);
-                if (nextPair.getType() == IPair.Type.CATALOG) {
-                    return;
-                }
-            }
-
-            final View child = parent.getChildAt(position);
-
-            if (child == null) {
-                return;
-            }
-            final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
-                    .getLayoutParams();
-            final int top = child.getBottom() + params.bottomMargin;
-            final int bottom = top + mDivider.getIntrinsicHeight();
-            mDivider.setBounds(left + DisplayUtils.dp2Px(parent.getContext(), 16), top, right - DisplayUtils.dp2Px(parent.getContext(), 16), bottom);
-            mDivider.draw(c);
         }
 
 

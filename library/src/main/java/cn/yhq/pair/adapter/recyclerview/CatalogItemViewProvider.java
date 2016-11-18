@@ -19,7 +19,7 @@ public class CatalogItemViewProvider extends PairItemViewProvider<PairCatalog> {
 
     @Override
     public int getItemViewLayoutId() {
-        return R.layout.catalog_layout;
+        return R.layout.pair_catalog_layout;
     }
 
 }

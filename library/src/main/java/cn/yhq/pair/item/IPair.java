@@ -13,6 +13,6 @@ public interface IPair {
     void invalidate();
 
     enum Type {
-        CATALOG, TEXT, SWITCH, FIELD, IMAGE, CHECKBOX
+        GROUP, CATALOG, TEXT, SWITCH, FIELD, IMAGE, CHECKBOX
     }
 }

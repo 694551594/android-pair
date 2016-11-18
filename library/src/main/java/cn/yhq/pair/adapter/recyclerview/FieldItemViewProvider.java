@@ -20,7 +20,7 @@ public class FieldItemViewProvider extends BaseItemViewProvider<FieldPairItem> {
 
     @Override
     public int getItemViewStubLayoutId() {
-        return R.layout.textview;
+        return R.layout.pair_widget_textview;
     }
 
 }

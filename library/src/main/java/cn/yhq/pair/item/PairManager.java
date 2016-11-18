@@ -3,8 +3,6 @@ package cn.yhq.pair.item;
 import android.content.Context;
 import android.view.View;
 
-import java.util.List;
-
 import cn.yhq.adapter.recycler.OnRecyclerViewItemClickListener;
 import cn.yhq.pair.adapter.recyclerview.PairAdapter;
 import cn.yhq.pair.ui.recyclerview.PairView;
@@ -18,6 +16,7 @@ public class PairManager {
     private Context context;
     private PairFactory factory;
     private PairAdapter adapter;
+    private PairGroup pairGroup;
 
     PairManager(Context context, PairFactory factory) {
         this.context = context;
@@ -29,22 +28,22 @@ public class PairManager {
     }
 
     public <T extends IPair> PairManager attach(PairView pairView) {
-        this.factory.setOnInvalidateListener(new OnInvalidateListener<T>() {
+        this.pairGroup = this.factory.create();
+        this.pairGroup.setOnInvalidateListener(new OnInvalidateListener() {
             @Override
-            public void onInvalidate(T pair) {
+            public void onInvalidate(IPair pair) {
                 int index = adapter.getListData().indexOf(pair);
                 adapter.notifyItemChanged(index);
             }
         });
-        List<IPair> pairs = factory.create();
-        this.adapter = new PairAdapter(context, pairs);
+        this.adapter = new PairAdapter(context, this.pairGroup.getPairs());
         this.adapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onRecyclerViewItemClick(View itemView, int position) {
                 IPair pair = adapter.getItem(position);
                 if (pair.getType() != BasePair.Type.CATALOG) {
                     PairItem<?> item = (PairItem<?>) pair;
-                    item.onClick();
+                    item.performClick();
                 }
             }
         });
@@ -53,11 +52,11 @@ public class PairManager {
     }
 
     public void refresh() {
-        factory.refresh();
+        pairGroup.refresh();
     }
 
     public void refresh(int index) {
-        factory.refresh(index);
+        pairGroup.refresh(index);
     }
 
 }

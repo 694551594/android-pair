@@ -1,5 +1,7 @@
 package cn.yhq.pair.item;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,85 +9,57 @@ import java.util.List;
  * Created by Administrator on 2016/11/17.
  */
 
-public abstract class PairFactory {
+public class PairFactory {
     private List<IPair> pairs = new ArrayList<>();
+    private Context context;
 
-    private void intercept() {
-        for (IPair pair : pairs) {
-            pair.intercept();
-        }
+    public PairFactory(Context context) {
+        this.context = context;
     }
 
-    private void invalidate() {
-        for (IPair pair : pairs) {
-            pair.invalidate();
-        }
+    PairGroup create() {
+        PairGroup pairGroup = onCreatePairGroup(context);
+        pairGroup.addAllPair(pairs);
+        pairGroup.refresh();
+        return pairGroup;
     }
 
-    private void intercept(int index) {
-        pairs.get(index).intercept();
-    }
-
-    private void invalidate(int index) {
-        pairs.get(index).invalidate();
-    }
-
-    List<IPair> create() {
-        onCreate(this);
-        refresh();
-        return this.pairs;
-    }
-
-    <T extends IPair> void setOnInvalidateListener(OnInvalidateListener<T> listener) {
-        for (IPair pair : pairs) {
-            ((BasePair<T>) pair).setOnInvalidateListener(listener);
-        }
-    }
-
-    protected abstract void onCreate(PairFactory factory);
-
-    public void refresh(int index) {
-        intercept(index);
-        invalidate(index);
-    }
-
-    public void refresh() {
-        intercept();
-        invalidate();
+    protected PairGroup onCreatePairGroup(Context context) {
+        return new PairGroup(context, null);
     }
 
     public PairCatalog newCatalog() {
-        PairCatalog catalog = new PairCatalog();
+        PairCatalog catalog = new PairCatalog(context);
         pairs.add(catalog);
         return catalog;
     }
 
     public CheckPairItem newCheckboxItem() {
-        CheckPairItem item = new CheckPairItem();
+        CheckPairItem item = new CheckPairItem(context);
         pairs.add(item);
         return item;
     }
 
     public SwitchPairItem newSwitchItem() {
-        SwitchPairItem item = new SwitchPairItem();
+        SwitchPairItem item = new SwitchPairItem(context);
         pairs.add(item);
         return item;
     }
 
     public TextPairItem newTextItem() {
-        TextPairItem item = new TextPairItem();
+        TextPairItem item = new TextPairItem(context);
         pairs.add(item);
         return item;
     }
 
     public FieldPairItem newFieldItem() {
-        FieldPairItem item = new FieldPairItem();
+        FieldPairItem item = new FieldPairItem(context);
         pairs.add(item);
         return item;
     }
 
     public ImagePairItem newImageItem() {
-        ImagePairItem item = new ImagePairItem();
+        ImagePairItem item = new ImagePairItem(context);
         pairs.add(item);
         return item;
     }

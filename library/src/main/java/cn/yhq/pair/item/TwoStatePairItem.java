@@ -1,5 +1,10 @@
 package cn.yhq.pair.item;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+
+import cn.yhq.pair.R;
 import cn.yhq.pair.action.PairAction;
 import cn.yhq.pair.action.PairPreferenceAction;
 
@@ -7,11 +12,18 @@ import cn.yhq.pair.action.PairPreferenceAction;
  * Created by Administrator on 2016/11/15.
  */
 
-public class TwoValuePairItem<T extends TwoValuePairItem<T>> extends PairItem<T> {
+public class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PairItem<T> {
     private boolean checked;
 
-    public TwoValuePairItem(Type type) {
-        super(type);
+    public TwoStatePairItem(Context context, Type type, AttributeSet attrs) {
+        super(context, type, attrs);
+
+        final TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.TwoStatePairItem);
+
+        this.checked = a.getBoolean(R.styleable.TwoStatePairItem_checked, false);
+
+        a.recycle();
     }
 
     public boolean isChecked() {
@@ -36,8 +48,8 @@ public class TwoValuePairItem<T extends TwoValuePairItem<T>> extends PairItem<T>
     }
 
     @Override
-    public boolean onClick() {
-        boolean handle = super.onClick();
+    public boolean performClick() {
+        boolean handle = super.performClick();
         if (!handle) {
             this.toggle();
             this.invalidate();

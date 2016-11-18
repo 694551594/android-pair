@@ -14,7 +14,7 @@ public abstract class BaseItemViewProvider<T extends PairItem<T>> extends PairIt
 
     @Override
     public int getItemViewLayoutId() {
-        return R.layout.item_layout;
+        return R.layout.pair_item_layout;
     }
 
     @Override

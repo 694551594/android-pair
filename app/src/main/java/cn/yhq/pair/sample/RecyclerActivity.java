@@ -12,6 +12,7 @@ import cn.yhq.pair.action.PairPreferenceAction;
 import cn.yhq.pair.interceptor.DateFormatInterceptor;
 import cn.yhq.pair.item.Interceptor;
 import cn.yhq.pair.item.PairFactory;
+import cn.yhq.pair.item.PairGroup;
 import cn.yhq.pair.item.PairManager;
 import cn.yhq.pair.item.TextPairItem;
 import cn.yhq.pair.ui.recyclerview.PairView;
@@ -40,9 +41,9 @@ public class RecyclerActivity extends BaseActivity {
 
         PairView pairView = this.getView(R.id.pairview);
 
-        PairManager pairManager = PairManager.create(this, new PairFactory() {
+        PairManager pairManager = PairManager.create(this, new PairFactory(this) {
             @Override
-            protected void onCreate(PairFactory factory) {
+            protected PairGroup onCreatePairGroup(Context context) {
                 this.newCatalog().setTitle("我是一组有图标的");
                 this.newTextItem()
                         .setIcon(R.drawable.find_more_friend_scan)
@@ -117,6 +118,8 @@ public class RecyclerActivity extends BaseActivity {
                         .setExp("${user.password}")
                         .setEntity(mUser)
                         .setKey("密码");
+
+                return super.onCreatePairGroup(context);
             }
         }).attach(pairView);
 

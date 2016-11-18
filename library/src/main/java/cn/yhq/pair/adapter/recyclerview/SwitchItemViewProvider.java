@@ -1,7 +1,7 @@
 package cn.yhq.pair.adapter.recyclerview;
 
+import android.support.v7.widget.SwitchCompat;
 import android.view.View;
-import android.widget.Switch;
 
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
@@ -24,7 +24,7 @@ public class SwitchItemViewProvider extends BaseItemViewProvider<SwitchPairItem>
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Switch switchButton = (Switch) view;
+                        SwitchCompat switchButton = (SwitchCompat) view;
                         SwitchPairItem switchPairItem = (SwitchPairItem) view.getTag();
                         switchPairItem.setChecked(switchButton.isChecked());
                     }
@@ -34,6 +34,6 @@ public class SwitchItemViewProvider extends BaseItemViewProvider<SwitchPairItem>
 
     @Override
     public int getItemViewStubLayoutId() {
-        return R.layout.switchbutton;
+        return R.layout.pair_widget_switchbutton;
     }
 }

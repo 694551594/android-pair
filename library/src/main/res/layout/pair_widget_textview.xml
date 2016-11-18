@@ -7,5 +7,5 @@
     android:text="1111"
     android:lines="1"
     android:ellipsize="end"
-    android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    android:textColor="@color/summary_text_color" />
+    android:textSize="@dimen/text_size"
+    android:textColor="?android:attr/textColorSecondary"/>

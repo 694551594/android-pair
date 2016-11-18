@@ -44,7 +44,10 @@
                 android:layout_toRightOf="@+id/icon"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="13dp"
-                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:textSize="@dimen/text_size"
+                android:textColor="?android:attr/textColorPrimary"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
                 android:gravity="right|center"
                 android:text="测试" />
 
@@ -66,8 +69,9 @@
             android:text="我是描述"
             android:layout_marginTop="-9dp"
             android:layout_marginBottom="13dp"
-            android:textColor="@color/summary_text_color"
-            android:textSize="@dimen/summary_text_size" />
+            android:textSize="@dimen/summary_text_size"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="4" />
 
     </LinearLayout>
 

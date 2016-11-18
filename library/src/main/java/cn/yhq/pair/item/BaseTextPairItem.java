@@ -1,5 +1,11 @@
 package cn.yhq.pair.item;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+
+import cn.yhq.pair.R;
+
 /**
  * Created by Yanghuiqiang on 2016/11/17.
  */
@@ -7,8 +13,15 @@ package cn.yhq.pair.item;
 public class BaseTextPairItem<T extends BaseTextPairItem<T>> extends PairItem<T> {
     private String text;
 
-    public BaseTextPairItem(Type type) {
-        super(type);
+    public BaseTextPairItem(Context context, Type type, AttributeSet attrs) {
+        super(context, type, attrs);
+
+        final TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.BaseTextPairItem);
+
+        this.text = a.getString(R.styleable.BaseTextPairItem_text);
+
+        a.recycle();
     }
 
     public String getText() {

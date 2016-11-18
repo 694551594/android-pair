@@ -1,5 +1,8 @@
 package cn.yhq.pair.item;
 
+import android.content.Context;
+import android.util.AttributeSet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,20 +13,26 @@ import java.util.List;
 public abstract class BasePair<T extends IPair> implements IPair {
     private Type type;
     private List<Interceptor<T>> interceptors = new ArrayList<>();
-    private OnInvalidateListener<T> onInvalidateListener;
+    private OnInvalidateListener onInvalidateListener;
+    private Context context;
 
-    public BasePair(Type type) {
+    public BasePair(Context context, Type type, AttributeSet attrs) {
+        this.context = context;
         this.type = type;
+    }
+
+    public Context getContext() {
+        return context;
     }
 
     @Override
     public void invalidate() {
         if (onInvalidateListener != null) {
-            onInvalidateListener.onInvalidate((T) this);
+            onInvalidateListener.onInvalidate(this);
         }
     }
 
-    protected void setOnInvalidateListener(OnInvalidateListener<T> onInvalidateListener) {
+    protected void setOnInvalidateListener(OnInvalidateListener onInvalidateListener) {
         this.onInvalidateListener = onInvalidateListener;
     }
 

@@ -33,6 +33,6 @@ public class CheckboxItemViewProvider extends BaseItemViewProvider<CheckPairItem
 
     @Override
     public int getItemViewStubLayoutId() {
-        return R.layout.checkbox;
+        return R.layout.pair_widget_checkbox;
     }
 }

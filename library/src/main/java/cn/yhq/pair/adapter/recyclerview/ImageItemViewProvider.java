@@ -43,6 +43,6 @@ public class ImageItemViewProvider extends BaseItemViewProvider<ImagePairItem> {
 
     @Override
     public int getItemViewStubLayoutId() {
-        return R.layout.imageview;
+        return R.layout.pair_widget_imageview;
     }
 }

@@ -1,5 +1,11 @@
 package cn.yhq.pair.item;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+
+import cn.yhq.pair.R;
+
 /**
  * Created by Administrator on 2016/11/15.
  */
@@ -10,8 +16,22 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
     private int width;
     private int height;
 
-    public ImagePairItem() {
-        super(Type.IMAGE);
+    public ImagePairItem(Context context, AttributeSet attrs) {
+        super(context, Type.IMAGE, attrs);
+
+        final TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.ImagePairItem);
+
+        this.resId = a.getResourceId(R.styleable.ImagePairItem_resId, 0);
+        this.url = a.getString(R.styleable.ImagePairItem_url);
+        this.width = a.getInt(R.styleable.ImagePairItem_width, 32);
+        this.height = a.getInt(R.styleable.ImagePairItem_height, 32);
+
+        a.recycle();
+    }
+
+    public ImagePairItem(Context context) {
+        this(context, null);
     }
 
     public int getResId() {

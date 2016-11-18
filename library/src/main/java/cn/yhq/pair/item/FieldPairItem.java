@@ -1,15 +1,22 @@
 package cn.yhq.pair.item;
 
 
+import android.content.Context;
+import android.util.AttributeSet;
+
 import cn.yhq.pair.interceptor.FieldParserInterceptor;
 
 public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
     private Object entity;
     private String exp;
 
-    public FieldPairItem() {
-        super(Type.FIELD);
+    public FieldPairItem(Context context, AttributeSet attrs) {
+        super(context, Type.FIELD, attrs);
         this.addInterceptor(new FieldParserInterceptor());
+    }
+
+    public FieldPairItem(Context context) {
+        this(context, null);
     }
 
     public Object getEntity() {
