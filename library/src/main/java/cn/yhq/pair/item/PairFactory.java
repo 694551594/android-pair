@@ -22,6 +22,14 @@ public abstract class PairFactory {
         }
     }
 
+    private void intercept(int index) {
+        pairs.get(index).intercept();
+    }
+
+    private void invalidate(int index) {
+        pairs.get(index).invalidate();
+    }
+
     List<IPair> create() {
         onCreate(this);
         refresh();
@@ -35,6 +43,11 @@ public abstract class PairFactory {
     }
 
     protected abstract void onCreate(PairFactory factory);
+
+    public void refresh(int index) {
+        intercept(index);
+        invalidate(index);
+    }
 
     public void refresh() {
         intercept();

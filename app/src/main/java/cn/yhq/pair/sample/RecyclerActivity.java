@@ -40,7 +40,7 @@ public class RecyclerActivity extends BaseActivity {
 
         PairView pairView = this.getView(R.id.pairview);
 
-        PairManager.create(this, new PairFactory() {
+        PairManager pairManager = PairManager.create(this, new PairFactory() {
             @Override
             protected void onCreate(PairFactory factory) {
                 this.newCatalog().setTitle("我是一组有图标的");
@@ -55,7 +55,8 @@ public class RecyclerActivity extends BaseActivity {
                         .setKey("摇一摇");
 
                 this.newCatalog().setTitle("拦截器测试");
-                this.newTextItem().setIcon(R.drawable.find_more_friend_photograph_icon)
+                this.newTextItem()
+                        .setIcon(R.drawable.find_more_friend_photograph_icon)
                         .setText("朋友圈")
                         .setKey("拦截器设置的文本")
                         .setDescription("之前的文本为：朋友圈")
@@ -66,17 +67,22 @@ public class RecyclerActivity extends BaseActivity {
                                 return chain.handle(chain.getPair());
                             }
                         });
-                this.newTextItem().setText("对话框")
+                this.newTextItem()
+                        .setText("对话框")
                         .setKey("对话框")
                         .setDescription("点我可以打开对话框")
                         .setAction(new PairDialogAction(getContext()) {
 
                             @Override
                             protected IDialog onCreateDialog(Context context) {
-                                return DialogBuilder.messageDialog(context).setMessage("我是对话框哦").create();
+                                return DialogBuilder
+                                        .messageDialog(context)
+                                        .setMessage("我是对话框哦")
+                                        .create();
                             }
                         });
-                this.newTextItem().setText("进入新的activity")
+                this.newTextItem()
+                        .setText("进入新的activity")
                         .setKey("activity")
                         .setAction(new PairActivityAction(getContext(), RecyclerActivity.class));
 
@@ -114,7 +120,8 @@ public class RecyclerActivity extends BaseActivity {
             }
         }).attach(pairView);
 
-
+        mUser.password = "密码刷新了";
+        pairManager.refresh(18);
     }
 
     @Override

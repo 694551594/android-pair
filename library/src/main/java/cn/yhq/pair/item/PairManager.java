@@ -28,11 +28,12 @@ public class PairManager {
         return new PairManager(context, factory);
     }
 
-    public <T extends IPair>void attach(PairView pairView) {
+    public <T extends IPair> PairManager attach(PairView pairView) {
         this.factory.setOnInvalidateListener(new OnInvalidateListener<T>() {
             @Override
             public void onInvalidate(T pair) {
-                adapter.notifyItemChanged(adapter.getListData().indexOf(pair));
+                int index = adapter.getListData().indexOf(pair);
+                adapter.notifyItemChanged(index);
             }
         });
         List<IPair> pairs = factory.create();
@@ -48,10 +49,15 @@ public class PairManager {
             }
         });
         pairView.setAdapter(adapter);
+        return this;
     }
 
     public void refresh() {
         factory.refresh();
+    }
+
+    public void refresh(int index) {
+        factory.refresh(index);
     }
 
 }
