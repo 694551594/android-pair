@@ -37,6 +37,8 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
     public PairItem(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        this.setItemViewLayoutId(R.layout.pair_item_layout);
+
         final TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.Pair);
 
@@ -82,11 +84,6 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
     }
 
     abstract public int getWidgetLayoutResource();
-
-    @Override
-    public int getItemViewLayoutId() {
-        return R.layout.pair_item_layout;
-    }
 
     public boolean performClick() {
         if (action != null) {

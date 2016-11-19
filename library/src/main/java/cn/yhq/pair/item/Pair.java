@@ -23,6 +23,7 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
     private OnPairChangeListener mOnPairChangeListener;
     private List<Interceptor<T>> interceptors = new ArrayList<>();
     private boolean isIntercept = true;
+    private int mItemViewLayoutId;
 
     public Pair(Context context, AttributeSet attrs) {
         this.mContext = context;
@@ -134,4 +135,12 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
         this.mOnPairChangeListener = listener;
     }
 
+    public void setItemViewLayoutId(int itemViewLayoutId) {
+        this.mItemViewLayoutId = itemViewLayoutId;
+    }
+
+    @Override
+    public final int getItemViewLayoutId() {
+        return mItemViewLayoutId;
+    }
 }

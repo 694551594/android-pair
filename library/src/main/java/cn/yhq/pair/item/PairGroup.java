@@ -65,9 +65,4 @@ public class PairGroup extends Pair<PairGroup> {
         return null;
     }
 
-    @Override
-    public int getItemViewLayoutId() {
-        return 0;
-    }
-
 }
