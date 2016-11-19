@@ -22,12 +22,11 @@ public class PairFactory {
         PairGroup pairGroup = onCreatePairGroup(context);
         pairGroup.addAllPair(pairs);
         postPairCreate(pairGroup);
-        pairGroup.refresh();
         return pairGroup;
     }
 
     private void postPairCreate(PairGroup pairGroup) {
-        for (IPair pair : pairGroup.getPairs()) {
+        for (IPair pair : pairGroup.getAllPairs()) {
             if (this.listener != null) {
                 this.listener.onCreate(pair.getId(), pair);
             }

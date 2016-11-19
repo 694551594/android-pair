@@ -7,56 +7,45 @@ import android.util.AttributeSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
 
 /**
- * Created by Administrator on 2016/11/17.
+ * Created by Administrator on 2016/11/19.
  */
 
-public abstract class BasePair<T extends IPair> implements IPair {
-    private int id;
-    private Type type;
+public abstract class Pair<T extends Pair<T>> implements IPair {
+    private int mId;
+    private Context mContext;
+    private OnPairChangeListener mOnPairChangeListener;
     private List<Interceptor<T>> interceptors = new ArrayList<>();
-    private OnInvalidateListener onInvalidateListener;
-    private Context context;
+    private boolean isIntercept = true;
 
-    public BasePair(Context context, Type type, AttributeSet attrs) {
-        this.context = context;
-        this.type = type;
+    public Pair(Context context, AttributeSet attrs) {
+        this.mContext = context;
 
         final TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.Pair);
 
-        this.id = a.getResourceId(R.styleable.Pair_id, 0);
+        this.mId = a.getResourceId(R.styleable.Pair_id, 0);
 
         a.recycle();
     }
 
-    public Context getContext() {
-        return context;
+    @Override
+    public int getId() {
+        return mId;
     }
 
-    public int getId() {
-        return id;
+    public Context getContext() {
+        return mContext;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.mId = id;
     }
 
-    @Override
-    public void invalidate() {
-        if (onInvalidateListener != null) {
-            onInvalidateListener.onInvalidate(this);
-        }
-    }
-
-    protected void setOnInvalidateListener(OnInvalidateListener onInvalidateListener) {
-        this.onInvalidateListener = onInvalidateListener;
-    }
-
-    @Override
-    public void intercept() {
+    private void intercept() {
         try {
             this.getDataWithInterceptorChain((T) this);
         } catch (Exception e) {
@@ -87,8 +76,9 @@ public abstract class BasePair<T extends IPair> implements IPair {
             if (index < interceptors.size()) {
                 Interceptor.Chain<T> chain = new DefaultInterceptor(index + 1, pair);
                 Interceptor<T> intercept = interceptors.get(index);
+                pair.setIntercept(false);
                 T interceptData = intercept.intercept(chain);
-
+                pair.setIntercept(true);
                 if (interceptData == null) {
                     throw new NullPointerException("intercept " + intercept + " returned null");
                 }
@@ -104,8 +94,27 @@ public abstract class BasePair<T extends IPair> implements IPair {
         return (T) this;
     }
 
-    @Override
-    public Type getType() {
-        return type;
+    protected void notifyChange() {
+        if (isIntercept) {
+            this.intercept();
+        }
+        if (mOnPairChangeListener != null) {
+            mOnPairChangeListener.onPairChange(this);
+        }
     }
+
+    public void setIntercept(boolean isIntercept) {
+        this.isIntercept = isIntercept;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder viewHolder) {
+
+    }
+
+    @Override
+    public void setOnPairChangeListener(OnPairChangeListener listener) {
+        this.mOnPairChangeListener = listener;
+    }
+
 }

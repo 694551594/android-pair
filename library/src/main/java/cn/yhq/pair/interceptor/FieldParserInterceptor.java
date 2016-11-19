@@ -23,6 +23,9 @@ public class FieldParserInterceptor implements Interceptor<FieldPairItem> {
     @Override
     public FieldPairItem intercept(Chain<FieldPairItem> chain) throws Exception {
         Object entity = chain.getPair().getEntity();
+        if (entity == null) {
+            return chain.handle(chain.getPair());
+        }
         this.jexlContext.set(entity.getClass().getSimpleName().toLowerCase(Locale.getDefault()), entity);
         JxltEngine.Expression expression = jxltEngine.createExpression(chain.getPair().getExp());
         Object newValue = expression.evaluate(jexlContext);

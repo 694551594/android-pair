@@ -70,7 +70,7 @@ public class PairLayoutActivity extends BaseActivity {
                     }
                 });
         pairManager.attach(pairView);
-        TextPairItem item = pairManager.getPair(R.id.pair_dialog);
+        TextPairItem item = pairManager.getPairById(R.id.pair_dialog);
         item.setText("我改变了哦");
     }
 

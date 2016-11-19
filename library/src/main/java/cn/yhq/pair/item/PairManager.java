@@ -1,9 +1,7 @@
 package cn.yhq.pair.item;
 
 import android.content.Context;
-import android.view.View;
 
-import cn.yhq.adapter.recycler.OnRecyclerViewItemClickListener;
 import cn.yhq.pair.adapter.recyclerview.PairAdapter;
 import cn.yhq.pair.ui.recyclerview.PairView;
 
@@ -27,41 +25,18 @@ public class PairManager {
         return new PairManager(context, factory);
     }
 
-    public <T extends IPair> T getPair(int id) {
-       return pairGroup.getPair(id);
+    public <T extends IPair> T getPairById(int id) {
+        return pairGroup.getPairById(id);
+    }
+
+    public <T extends IPair> T getPairByIndex(int index) {
+        return pairGroup.getPairByIndex(index);
     }
 
     public void attach(PairView pairView) {
         this.pairGroup = this.factory.create();
-        this.pairGroup.setOnInvalidateListener(new OnInvalidateListener() {
-            @Override
-            public void onInvalidate(IPair pair) {
-                int index = adapter.getListData().indexOf(pair);
-                adapter.notifyItemChanged(index);
-            }
-        });
-        this.adapter = new PairAdapter(context, this.pairGroup.getPairs());
-        this.adapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
-            @Override
-            public void onRecyclerViewItemClick(View itemView, int position) {
-                IPair pair = adapter.getItem(position);
-                if (pair.getType() != BasePair.Type.CATALOG) {
-                    PairItem<?> item = (PairItem<?>) pair;
-                    item.performClick();
-                }
-            }
-        });
+        this.adapter = new PairAdapter(context, this.pairGroup);
         pairView.setAdapter(adapter);
-    }
-
-    public PairManager refresh() {
-        pairGroup.refresh();
-        return this;
-    }
-
-    public PairManager refresh(int id) {
-        pairGroup.refresh(id);
-        return this;
     }
 
     public PairManager setOnPairCreateListener(OnPairCreateListener listener) {

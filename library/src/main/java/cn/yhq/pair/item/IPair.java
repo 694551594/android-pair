@@ -1,20 +1,19 @@
 package cn.yhq.pair.item;
 
+import cn.yhq.adapter.recycler.ViewHolder;
+
 /**
  * Created by Administrator on 2016/11/17.
  */
 
 public interface IPair {
 
-    Type getType();
-
     int getId();
 
-    void intercept();
+    int getItemViewLayoutId();
 
-    void invalidate();
+    void onBindViewHolder(ViewHolder viewHolder);
 
-    enum Type {
-        GROUP, CATALOG, TEXT, SWITCH, FIELD, IMAGE, CHECKBOX
-    }
+    void setOnPairChangeListener(OnPairChangeListener listener);
+
 }

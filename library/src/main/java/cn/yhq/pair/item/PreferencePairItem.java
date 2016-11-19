@@ -9,10 +9,10 @@ import cn.yhq.pair.action.PairPreferenceAction;
  * Created by Yanghuiqiang on 2016/11/18.
  */
 
-public class PreferencePairItem<T extends PreferencePairItem<T>> extends PairItem<T> {
+public abstract class PreferencePairItem<T extends PreferencePairItem<T>> extends PairItem<T> {
 
-    public PreferencePairItem(Context context, Type type, AttributeSet attrs) {
-        super(context, type, attrs);
+    public PreferencePairItem(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 
     public void onSavePreference(Object value) {
@@ -36,4 +36,5 @@ public class PreferencePairItem<T extends PreferencePairItem<T>> extends PairIte
         this.setAction(action);
         return (T) this;
     }
+
 }

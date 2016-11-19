@@ -13,7 +13,7 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
     private String exp;
 
     public FieldPairItem(Context context, AttributeSet attrs) {
-        super(context, Type.FIELD, attrs);
+        super(context, attrs);
 
         final TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.FieldPairItem);
@@ -35,7 +35,7 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
 
     public FieldPairItem setEntity(Object entity) {
         this.entity = entity;
-        this.invalidate();
+        this.notifyChange();
         return this;
     }
 
@@ -45,7 +45,7 @@ public class FieldPairItem extends BaseTextPairItem<FieldPairItem> {
 
     public FieldPairItem setExp(String exp) {
         this.exp = exp;
-        this.invalidate();
+        this.notifyChange();
         return this;
     }
 

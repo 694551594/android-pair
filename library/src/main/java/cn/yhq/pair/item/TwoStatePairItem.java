@@ -12,11 +12,11 @@ import cn.yhq.pair.action.PairPreferenceAction;
  * Created by Administrator on 2016/11/15.
  */
 
-public class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PreferencePairItem<T> {
+public abstract class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PreferencePairItem<T> {
     private boolean checked;
 
-    public TwoStatePairItem(Context context, Type type, AttributeSet attrs) {
-        super(context, type, attrs);
+    public TwoStatePairItem(Context context, AttributeSet attrs) {
+        super(context, attrs);
 
         final TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.TwoStatePairItem);
@@ -35,13 +35,14 @@ public class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PreferenceP
             return (T) this;
         }
         this.checked = checked;
-        onCheckedChange();
-        this.invalidate();
+        this.notifyChange();
         return (T) this;
     }
 
-    private void onCheckedChange() {
+    @Override
+    protected void notifyChange() {
         this.onSavePreference(checked);
+        super.notifyChange();
     }
 
     public T toggle() {
@@ -71,4 +72,5 @@ public class TwoStatePairItem<T extends TwoStatePairItem<T>> extends PreferenceP
         }
         return super.setAction(action);
     }
+
 }
