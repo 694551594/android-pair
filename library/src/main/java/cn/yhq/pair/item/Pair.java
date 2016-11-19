@@ -14,7 +14,7 @@ import cn.yhq.pair.R;
  * Created by Administrator on 2016/11/19.
  */
 
-// 拦截器的顺序、group与catalog的问题，enable的问题
+// 拦截器的添加顺序、group与catalog的问题，enable的问题
 
 public abstract class Pair<T extends Pair<T>> implements IPair {
     private int mId;

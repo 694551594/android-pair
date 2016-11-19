@@ -103,8 +103,8 @@ public class RecyclerActivity extends BaseActivity {
                         .setText("没有图标的文本哦").setEnable(false);
                 this.newTextItem()
                         .setKey("这是一个日期格式化的例子")
-                        .addInterceptor(new DateFormatInterceptor<TextPairItem>())
-                        .setText(System.currentTimeMillis());
+                        .setText(System.currentTimeMillis())
+                        .addInterceptor(new DateFormatInterceptor<TextPairItem>());
                 this.newImageItem().setKey("后面是一张图片")
                         .setResId(R.drawable.ic_discovery_templet_shop);
 
