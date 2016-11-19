@@ -60,14 +60,13 @@ public class RecyclerActivity extends BaseActivity {
                         .setIcon(R.drawable.find_more_friend_photograph_icon)
                         .setText("朋友圈")
                         .setKey("拦截器设置的文本")
-                        .setDescription("之前的文本为：朋友圈")
                         .addInterceptor(new Interceptor<TextPairItem>() {
                             @Override
                             public TextPairItem intercept(Chain<TextPairItem> chain) throws Exception {
                                 chain.getPair().setText("我是拦截器设置的文本");
                                 return chain.handle(chain.getPair());
                             }
-                        });
+                        }).setDescription("之前的文本为：朋友圈");
                 this.newTextItem()
                         .setText("对话框")
                         .setKey("对话框")
@@ -101,11 +100,11 @@ public class RecyclerActivity extends BaseActivity {
                 this.newCatalog().setTitle("没图标的");
                 this.newTextItem()
                         .setKey("没有图标")
-                        .setText("没有图标的文本哦");
+                        .setText("没有图标的文本哦").setEnable(false);
                 this.newTextItem()
                         .setKey("这是一个日期格式化的例子")
-                        .setText(System.currentTimeMillis())
-                        .addInterceptor(new DateFormatInterceptor<TextPairItem>());
+                        .addInterceptor(new DateFormatInterceptor<TextPairItem>())
+                        .setText(System.currentTimeMillis());
                 this.newImageItem().setKey("后面是一张图片")
                         .setResId(R.drawable.ic_discovery_templet_shop);
 

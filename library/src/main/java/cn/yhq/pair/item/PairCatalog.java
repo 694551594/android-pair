@@ -31,6 +31,14 @@ public class PairCatalog extends PairGroup {
         a.recycle();
     }
 
+    @Override
+    public PairGroup setEnable(boolean enable) {
+        for (IPair pair : getPairs()) {
+            ((Pair<?>) pair).setEnable(enable);
+        }
+        return super.setEnable(enable);
+    }
+
     public String getTitle() {
         return title;
     }
@@ -44,6 +52,8 @@ public class PairCatalog extends PairGroup {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder) {
         super.onBindViewHolder(viewHolder);
+
+        viewHolder.itemView.setEnabled(isEnable());
 
         viewHolder.bindResId(R.id.title)
                 .setVisibility(TextUtils.isEmpty(this.getTitle()) ? View.GONE : View.VISIBLE)

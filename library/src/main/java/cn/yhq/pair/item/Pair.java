@@ -14,8 +14,11 @@ import cn.yhq.pair.R;
  * Created by Administrator on 2016/11/19.
  */
 
+// 拦截器的顺序、group与catalog的问题，enable的问题
+
 public abstract class Pair<T extends Pair<T>> implements IPair {
     private int mId;
+    private boolean mEnable = true;
     private Context mContext;
     private OnPairChangeListener mOnPairChangeListener;
     private List<Interceptor<T>> interceptors = new ArrayList<>();
@@ -28,8 +31,19 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
                 attrs, R.styleable.Pair);
 
         this.mId = a.getResourceId(R.styleable.Pair_id, 0);
+        this.mEnable = a.getBoolean(R.styleable.Pair_enable, true);
 
         a.recycle();
+    }
+
+    public T setEnable(boolean enable) {
+        this.mEnable = enable;
+        this.notifyChange();
+        return (T) this;
+    }
+
+    public boolean isEnable() {
+        return mEnable;
     }
 
     @Override
@@ -49,6 +63,7 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
         try {
             this.getDataWithInterceptorChain((T) this);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -73,19 +88,21 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
 
         @Override
         public T handle(T pair) throws Exception {
-            if (index < interceptors.size()) {
-                Interceptor.Chain<T> chain = new DefaultInterceptor(index + 1, pair);
-                Interceptor<T> intercept = interceptors.get(index);
-                pair.setIntercept(false);
-                T interceptData = intercept.intercept(chain);
-                pair.setIntercept(true);
-                if (interceptData == null) {
-                    throw new NullPointerException("intercept " + intercept + " returned null");
+            try {
+                if (index < interceptors.size()) {
+                    Interceptor.Chain<T> chain = new DefaultInterceptor(index + 1, pair);
+                    Interceptor<T> intercept = interceptors.get(index);
+                    pair.setIntercept(false);
+                    T interceptData = intercept.intercept(chain);
+                    if (interceptData == null) {
+                        throw new NullPointerException("intercept " + intercept + " returned null");
+                    }
+                    return interceptData;
                 }
-
-                return interceptData;
+                return pair;
+            } finally {
+                pair.setIntercept(true);
             }
-            return pair;
         }
     }
 

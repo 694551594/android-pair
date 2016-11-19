@@ -50,6 +50,9 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder) {
         super.onBindViewHolder(viewHolder);
+
+        viewHolder.itemView.setEnabled(isEnable());
+
         viewHolder.setOnRecyclerViewItemClickListener(clickListener);
 
         // key值

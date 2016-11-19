@@ -1,5 +1,7 @@
 package cn.yhq.pair.interceptor;
 
+import android.text.TextUtils;
+
 import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlContext;
 import org.apache.commons.jexl3.JexlEngine;
@@ -27,7 +29,11 @@ public class FieldParserInterceptor implements Interceptor<FieldPairItem> {
             return chain.handle(chain.getPair());
         }
         this.jexlContext.set(entity.getClass().getSimpleName().toLowerCase(Locale.getDefault()), entity);
-        JxltEngine.Expression expression = jxltEngine.createExpression(chain.getPair().getExp());
+        String exp = chain.getPair().getExp();
+        if (TextUtils.isEmpty(exp)) {
+            return chain.handle(chain.getPair());
+        }
+        JxltEngine.Expression expression = jxltEngine.createExpression(exp);
         Object newValue = expression.evaluate(jexlContext);
         chain.getPair().setText(newValue);
         return chain.handle(chain.getPair());

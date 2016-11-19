@@ -5,6 +5,7 @@
         <attr name="id" format="integer"/>
         <attr name="icon" />
         <attr name="key" format="string" />
+        <attr name="enable" format="boolean" />
         <attr name="description" format="string" />
     </declare-styleable>
 

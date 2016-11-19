@@ -33,6 +33,10 @@ public class PairGroup extends Pair<PairGroup> {
         return (T) getAllPairs().get(index);
     }
 
+    protected List<IPair> getPairs() {
+        return pairs;
+    }
+
     private void _getPairs(List<IPair> list, PairGroup pairGroup) {
         for (IPair pair : pairGroup.pairs) {
             if (pair instanceof PairGroup) {
