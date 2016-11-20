@@ -30,6 +30,7 @@ public class PairFactory {
             if (this.listener != null) {
                 this.listener.onCreate(pair.getId(), pair);
             }
+            pair.onCreated();
         }
     }
 

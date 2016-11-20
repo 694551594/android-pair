@@ -16,4 +16,10 @@ public interface IPair {
 
     void setOnPairChangeListener(OnPairChangeListener listener);
 
+    void onCreated();
+
+    boolean isVisible();
+
+    boolean isEnable();
+
 }

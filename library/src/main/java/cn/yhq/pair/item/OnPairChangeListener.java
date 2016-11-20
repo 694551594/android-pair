@@ -8,4 +8,6 @@ public interface OnPairChangeListener {
 
     void onPairChange(IPair pair);
 
+    void onPairHierarchyChange(IPair pair);
+
 }

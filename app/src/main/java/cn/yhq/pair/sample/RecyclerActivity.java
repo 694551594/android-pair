@@ -49,6 +49,7 @@ public class RecyclerActivity extends BaseActivity {
                         .setIcon(R.drawable.find_more_friend_scan)
                         .setKey("扫一扫");
                 this.newTextItem()
+                        .setVisible(false)
                         .setIcon(R.drawable.find_more_friend_photograph_icon)
                         .setKey("朋友圈");
                 this.newTextItem()
@@ -103,8 +104,8 @@ public class RecyclerActivity extends BaseActivity {
                         .setText("没有图标的文本哦").setEnable(false);
                 this.newTextItem()
                         .setKey("这是一个日期格式化的例子")
-                        .setText(System.currentTimeMillis())
-                        .addInterceptor(new DateFormatInterceptor<TextPairItem>());
+                        .addInterceptor(new DateFormatInterceptor<TextPairItem>())
+                        .setText(System.currentTimeMillis());
                 this.newImageItem().setKey("后面是一张图片")
                         .setResId(R.drawable.ic_discovery_templet_shop);
 

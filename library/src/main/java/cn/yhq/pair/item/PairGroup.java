@@ -23,14 +23,16 @@ public class PairGroup extends Pair<PairGroup> {
 
     public void addPair(IPair pair) {
         this.pairs.add(pair);
+        this.notifyHierarchyChange();
     }
 
     public void addAllPair(List<IPair> pairs) {
         this.pairs.addAll(pairs);
+        this.notifyHierarchyChange();
     }
 
     public <T extends IPair> T getPairByIndex(int index) {
-        return (T) getAllPairs().get(index);
+        return (T) getAllVisiblePairs().get(index);
     }
 
     protected List<IPair> getPairs() {
@@ -39,13 +41,11 @@ public class PairGroup extends Pair<PairGroup> {
 
     private void _getPairs(List<IPair> list, PairGroup pairGroup) {
         for (IPair pair : pairGroup.pairs) {
-            if (pair instanceof PairGroup) {
-                if (pair instanceof PairCatalog) {
-                    list.add(pair);
-                }
-                _getPairs(list, (PairGroup) pair);
-            } else {
+            if (pair.isVisible()) {
                 list.add(pair);
+            }
+            if (pair instanceof PairGroup) {
+                _getPairs(list, (PairGroup) pair);
             }
         }
     }
@@ -53,6 +53,16 @@ public class PairGroup extends Pair<PairGroup> {
     public List<IPair> getAllPairs() {
         List<IPair> list = new ArrayList<>();
         _getPairs(list, this);
+        return list;
+    }
+
+    public List<IPair> getAllVisiblePairs() {
+        List<IPair> list = new ArrayList<>();
+        for (IPair pair : getAllPairs()) {
+            if (pair.isVisible()) {
+                list.add(pair);
+            }
+        }
         return list;
     }
 

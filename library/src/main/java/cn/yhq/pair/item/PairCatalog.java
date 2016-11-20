@@ -18,10 +18,16 @@ public class PairCatalog extends PairGroup {
 
     public PairCatalog(Context context) {
         super(context);
+
+        this.setItemViewLayoutId(R.layout.pair_catalog_layout);
+        this.setEnable(false);
     }
 
     public PairCatalog(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        this.setItemViewLayoutId(R.layout.pair_catalog_layout);
+        this.setEnable(false);
 
         final TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.PairCatalog);
@@ -29,14 +35,12 @@ public class PairCatalog extends PairGroup {
         this.title = a.getString(R.styleable.PairCatalog_title);
 
         a.recycle();
+
     }
 
     @Override
-    public PairGroup setEnable(boolean enable) {
-        for (IPair pair : getPairs()) {
-            ((Pair<?>) pair).setEnable(enable);
-        }
-        return super.setEnable(enable);
+    public boolean isEnable() {
+        return false;
     }
 
     public String getTitle() {
@@ -60,8 +64,4 @@ public class PairCatalog extends PairGroup {
                 .setText(this.getTitle());
     }
 
-    @Override
-    public int getItemViewLayoutId() {
-        return R.layout.pair_catalog_layout;
-    }
 }

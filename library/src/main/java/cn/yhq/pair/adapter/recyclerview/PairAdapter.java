@@ -46,7 +46,7 @@ public class PairAdapter extends RecyclerListAdapter<IPair> {
     }
 
     public PairAdapter(Context context, PairGroup listData) {
-        super(context, listData.getAllPairs());
+        super(context, listData.getAllVisiblePairs());
 
         for (int i = 0; i < this.getItemCount(); i++) {
             IPair pair = this.getItem(i);
@@ -55,6 +55,11 @@ public class PairAdapter extends RecyclerListAdapter<IPair> {
                 public void onPairChange(IPair pair) {
                     int index = getListData().indexOf(pair);
                     notifyItemChanged(index);
+                }
+
+                @Override
+                public void onPairHierarchyChange(IPair pair) {
+                    notifyDataSetChanged();
                 }
             });
 

@@ -14,15 +14,17 @@ import cn.yhq.pair.R;
  * Created by Administrator on 2016/11/19.
  */
 
-// 拦截器的添加顺序、group与catalog的问题，enable的问题
+// 拦截器的添加顺序、group与catalog的问题，visible的问题
 
 public abstract class Pair<T extends Pair<T>> implements IPair {
     private int mId;
     private boolean mEnable = true;
+    private boolean mVisible = true;
     private Context mContext;
     private OnPairChangeListener mOnPairChangeListener;
     private List<Interceptor<T>> interceptors = new ArrayList<>();
     private boolean isIntercept = true;
+    private boolean isCreated = false;
     private int mItemViewLayoutId;
 
     public Pair(Context context, AttributeSet attrs) {
@@ -33,6 +35,7 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
 
         this.mId = a.getResourceId(R.styleable.Pair_id, 0);
         this.mEnable = a.getBoolean(R.styleable.Pair_enable, true);
+        this.mVisible = a.getBoolean(R.styleable.Pair_visible, true);
 
         a.recycle();
     }
@@ -43,8 +46,20 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
         return (T) this;
     }
 
+    @Override
     public boolean isEnable() {
         return mEnable;
+    }
+
+    public T setVisible(boolean visible) {
+        this.mVisible = visible;
+        this.notifyHierarchyChange();
+        return (T) this;
+    }
+
+    @Override
+    public boolean isVisible() {
+        return mVisible;
     }
 
     @Override
@@ -112,13 +127,31 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
         return (T) this;
     }
 
+    protected void notifyHierarchyChange() {
+        if (!isCreated) {
+            return;
+        }
+        if (mOnPairChangeListener != null) {
+            mOnPairChangeListener.onPairHierarchyChange(this);
+        }
+    }
+
     protected void notifyChange() {
+        if (!isCreated) {
+            return;
+        }
         if (isIntercept) {
             this.intercept();
         }
         if (mOnPairChangeListener != null) {
             mOnPairChangeListener.onPairChange(this);
         }
+    }
+
+    @Override
+    public void onCreated() {
+        this.isCreated = true;
+        this.notifyChange();
     }
 
     public void setIntercept(boolean isIntercept) {
