@@ -52,6 +52,8 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder) {
         super.onBindViewHolder(viewHolder);
+        viewHolder.itemView.setTag(R.id.pair_divider_allowed_above, true);
+        viewHolder.itemView.setTag(R.id.pair_divider_allowed_below, true);
 
         viewHolder.itemView.setEnabled(isEnable());
 

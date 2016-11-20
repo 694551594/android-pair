@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
+import cn.yhq.pair.R;
+import cn.yhq.pair.utils.DisplayUtils;
+
 
 /**
  * Created by Yanghuiqiang on 2016/11/16.
@@ -37,7 +40,83 @@ public class PairView extends RecyclerView {
         this.setLayoutManager(new LinearLayoutManager(getContext()));
         this.setVerticalScrollBarEnabled(false);
         this.setBackgroundResource(android.R.color.white);
-        // this.addItemDecoration(new PairView.DividerItemDecoration(this.getContext()));
+        this.addItemDecoration(new PairView.DividerDecoration(getContext()));
+    }
+
+    private class DividerDecoration extends RecyclerView.ItemDecoration {
+        private final int[] ATTRS = new int[]{
+                android.R.attr.listDivider
+        };
+
+        private Drawable mDivider;
+        private int mDividerHeight;
+
+        public DividerDecoration(Context context) {
+            final TypedArray a = context.obtainStyledAttributes(ATTRS);
+            mDivider = a.getDrawable(0);
+            a.recycle();
+
+            mDividerHeight = 1;
+        }
+
+        @Override
+        public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+            if (mDivider == null) {
+                return;
+            }
+            final int childCount = parent.getChildCount();
+            final int width = parent.getWidth();
+            for (int childViewIndex = 0; childViewIndex < childCount; childViewIndex++) {
+                final View view = parent.getChildAt(childViewIndex);
+                if (shouldDrawDividerBelow(view, parent)) {
+                    int top = (int) ViewCompat.getY(view) + view.getHeight();
+                    int offset = DisplayUtils.dp2Px(getContext(), 16);
+                    mDivider.setBounds(0 + offset, top, width - offset, top + mDividerHeight);
+                    mDivider.draw(c);
+                }
+            }
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
+                                   RecyclerView.State state) {
+            if (shouldDrawDividerBelow(view, parent)) {
+                outRect.bottom = mDividerHeight;
+            } else {
+                outRect.bottom = 0;
+            }
+        }
+
+        private boolean shouldDrawDividerBelow(View view, RecyclerView parent) {
+            final RecyclerView.ViewHolder holder = parent.getChildViewHolder(view);
+            Boolean dividerAllowedBelow = (Boolean) holder.itemView.getTag(R.id.pair_divider_allowed_below);
+            if (!dividerAllowedBelow) {
+                return false;
+            }
+            Boolean nextAllowed = true;
+            int index = parent.indexOfChild(view);
+            if (index < parent.getChildCount() - 1) {
+                final View nextView = parent.getChildAt(index + 1);
+                final RecyclerView.ViewHolder nextHolder = parent.getChildViewHolder(nextView);
+                nextAllowed = (boolean) nextHolder.itemView.getTag(R.id.pair_divider_allowed_above);
+            }
+            return nextAllowed;
+        }
+
+        public void setDivider(Drawable divider) {
+            if (divider != null) {
+                mDividerHeight = divider.getIntrinsicHeight();
+            } else {
+                mDividerHeight = 0;
+            }
+            mDivider = divider;
+            invalidateItemDecorations();
+        }
+
+        public void setDividerHeight(int dividerHeight) {
+            mDividerHeight = dividerHeight;
+            invalidateItemDecorations();
+        }
     }
 
     public static class DividerItemDecoration extends RecyclerView.ItemDecoration {

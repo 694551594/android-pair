@@ -56,6 +56,8 @@ public class PairCatalog extends PairGroup {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder) {
         super.onBindViewHolder(viewHolder);
+        viewHolder.itemView.setTag(R.id.pair_divider_allowed_above, false);
+        viewHolder.itemView.setTag(R.id.pair_divider_allowed_below, false);
 
         viewHolder.itemView.setEnabled(isEnable());
 

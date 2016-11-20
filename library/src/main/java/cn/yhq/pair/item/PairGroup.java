@@ -41,9 +41,7 @@ public class PairGroup extends Pair<PairGroup> {
 
     private void _getPairs(List<IPair> list, PairGroup pairGroup) {
         for (IPair pair : pairGroup.pairs) {
-            if (pair.isVisible()) {
-                list.add(pair);
-            }
+            list.add(pair);
             if (pair instanceof PairGroup) {
                 _getPairs(list, (PairGroup) pair);
             }
