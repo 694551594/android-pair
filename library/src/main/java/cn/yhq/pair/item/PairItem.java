@@ -8,6 +8,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 
 import cn.yhq.adapter.recycler.OnRecyclerViewItemClickListener;
 import cn.yhq.adapter.recycler.ViewHolder;
@@ -49,13 +50,26 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
         a.recycle();
     }
 
+    private void setAllEnable(ViewGroup itemView, boolean enable) {
+        itemView.setEnabled(enable);
+        for (int i = 0; i < itemView.getChildCount(); i++) {
+            View v = itemView.getChildAt(i);
+            v.setEnabled(enable);
+            if (v instanceof ViewGroup) {
+                setAllEnable((ViewGroup) v, enable);
+            }
+        }
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder viewHolder) {
         super.onBindViewHolder(viewHolder);
-        viewHolder.itemView.setTag(R.id.pair_divider_allowed_above, true);
-        viewHolder.itemView.setTag(R.id.pair_divider_allowed_below, true);
+        ViewGroup itemView = (ViewGroup) viewHolder.itemView;
 
-        viewHolder.itemView.setEnabled(isEnable());
+        itemView.setTag(R.id.pair_divider_allowed_above, true);
+        itemView.setTag(R.id.pair_divider_allowed_below, true);
+
+        setAllEnable(itemView, isEnable());
 
         viewHolder.setOnRecyclerViewItemClickListener(clickListener);
 
@@ -149,4 +163,5 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
     public PairAction getAction() {
         return action;
     }
+
 }

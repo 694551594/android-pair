@@ -21,6 +21,16 @@ public class PairGroup extends Pair<PairGroup> {
         super(context, attrs);
     }
 
+    public void removePair(IPair pair) {
+        this.pairs.remove(pair);
+        this.notifyHierarchyChange();
+    }
+
+    public void removeAllPair(List<IPair> pairs) {
+        this.pairs.removeAll(pairs);
+        this.notifyHierarchyChange();
+    }
+
     public void addPair(IPair pair) {
         this.pairs.add(pair);
         this.notifyHierarchyChange();

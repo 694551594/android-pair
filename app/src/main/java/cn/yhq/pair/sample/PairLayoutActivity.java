@@ -8,7 +8,6 @@ import cn.yhq.dialog.core.DialogBuilder;
 import cn.yhq.dialog.core.IDialog;
 import cn.yhq.pair.action.PairDialogAction;
 import cn.yhq.pair.interceptor.DateFormatInterceptor;
-import cn.yhq.pair.item.FieldPairItem;
 import cn.yhq.pair.item.IPair;
 import cn.yhq.pair.item.Interceptor;
 import cn.yhq.pair.item.OnPairCreateListener;
@@ -36,7 +35,7 @@ public class PairLayoutActivity extends BaseActivity {
                     public void onCreate(int id, IPair pair) {
                         switch (id) {
                             case R.id.pair_interceptor:
-                                ((TextPairItem) pair).addInterceptor(new Interceptor<TextPairItem>() {
+                                this.getTextPairItem(pair).addInterceptor(new Interceptor<TextPairItem>() {
                                     @Override
                                     public TextPairItem intercept(Chain<TextPairItem> chain) throws Exception {
                                         chain.getPair().setText("我是拦截器设置的文本");
@@ -45,7 +44,7 @@ public class PairLayoutActivity extends BaseActivity {
                                 });
                                 break;
                             case R.id.pair_dialog:
-                                ((TextPairItem) pair).setAction(new PairDialogAction(getContext()) {
+                                this.getTextPairItem(pair).setAction(new PairDialogAction(getContext()) {
 
                                     @Override
                                     protected IDialog onCreateDialog(Context context) {
@@ -57,14 +56,14 @@ public class PairLayoutActivity extends BaseActivity {
                                 });
                                 break;
                             case R.id.pair_date_format:
-                                ((TextPairItem) pair).setText(System.currentTimeMillis()).addInterceptor(new DateFormatInterceptor<TextPairItem>());
+                                this.getTextPairItem(pair).setText(System.currentTimeMillis()).addInterceptor(new DateFormatInterceptor<TextPairItem>());
                                 break;
                             case R.id.pair_field_username:
                             case R.id.pair_field_password:
                                 RecyclerActivity.User mUser = new RecyclerActivity.User();
                                 mUser.password = "123456";
                                 mUser.username = "694551594";
-                                ((FieldPairItem) pair).setEntity(mUser);
+                                this.getFieldPairItem(pair).setEntity(mUser);
                                 break;
                         }
                     }
