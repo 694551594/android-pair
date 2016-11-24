@@ -81,7 +81,7 @@ public class PairView extends RecyclerView {
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
                                    RecyclerView.State state) {
             if (shouldDrawDividerBelow(view, parent)) {
-                outRect.bottom = mDividerHeight;
+                //outRect.bottom = mDividerHeight;
             } else {
                 outRect.bottom = 0;
             }
@@ -119,45 +119,5 @@ public class PairView extends RecyclerView {
         }
     }
 
-    public static class DividerItemDecoration extends RecyclerView.ItemDecoration {
-
-        private static final int[] ATTRS = new int[]{
-                android.R.attr.listDivider
-        };
-
-        private Drawable mDivider;
-
-        public DividerItemDecoration(Context context) {
-            final TypedArray a = context.obtainStyledAttributes(ATTRS);
-            mDivider = a.getDrawable(0);
-            a.recycle();
-        }
-
-        @Override
-        public void onDraw(Canvas c, RecyclerView parent, State state) {
-            super.onDraw(c, parent, state);
-            final int left = parent.getPaddingLeft();
-            final int right = parent.getWidth() - parent.getPaddingRight();
-            final int childCount = parent.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                final View child = parent.getChildAt(i);
-                final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
-                        .getLayoutParams();
-                final int top = child.getBottom() + params.bottomMargin +
-                        Math.round(ViewCompat.getTranslationY(child));
-                final int bottom = top + mDivider.getIntrinsicHeight();
-                int offset = 0;
-                // DisplayUtils.dp2Px(parent.getContext(), 16);
-                mDivider.setBounds(left + offset, top, right - offset, bottom);
-                mDivider.draw(c);
-            }
-        }
-
-
-        @Override
-        public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
-            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-        }
-    }
 
 }
