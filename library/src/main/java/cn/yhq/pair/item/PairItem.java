@@ -69,8 +69,6 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
         itemView.setTag(R.id.pair_divider_allowed_above, true);
         itemView.setTag(R.id.pair_divider_allowed_below, true);
 
-        setAllEnable(itemView, isEnable());
-
         viewHolder.setOnRecyclerViewItemClickListener(clickListener);
 
         // key值
@@ -97,6 +95,8 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
         ViewStubCompat viewStub = viewHolder.getView(R.id.view_stub);
         viewStub.setLayoutResource(getWidgetLayoutResource());
         viewStub.setVisibility(View.VISIBLE);
+
+        setAllEnable(itemView, isEnable());
     }
 
     abstract public int getWidgetLayoutResource();
