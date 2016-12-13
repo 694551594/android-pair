@@ -2,8 +2,8 @@ package cn.yhq.pair.item;
 
 import android.content.Context;
 
-import cn.yhq.pair.adapter.recyclerview.PairAdapter;
-import cn.yhq.pair.ui.recyclerview.PairView;
+import cn.yhq.pair.ui.PairAdapter;
+import cn.yhq.pair.ui.PairView;
 
 
 /**
@@ -23,6 +23,10 @@ public class PairManager {
 
     public static PairManager create(Context context, PairFactory factory) {
         return new PairManager(context, factory);
+    }
+
+    public PairGroup getPairGroup() {
+        return pairGroup;
     }
 
     public <T extends IPair> T getPairById(int id) {

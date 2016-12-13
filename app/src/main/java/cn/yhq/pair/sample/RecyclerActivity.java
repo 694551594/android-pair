@@ -15,7 +15,7 @@ import cn.yhq.pair.item.PairFactory;
 import cn.yhq.pair.item.PairGroup;
 import cn.yhq.pair.item.PairManager;
 import cn.yhq.pair.item.TextPairItem;
-import cn.yhq.pair.ui.recyclerview.PairView;
+import cn.yhq.pair.ui.PairView;
 
 public class RecyclerActivity extends BaseActivity {
 
@@ -126,6 +126,6 @@ public class RecyclerActivity extends BaseActivity {
 
     @Override
     protected int getContentViewLayoutId() {
-        return R.layout.activity_recycler;
+        return R.layout.pair_layout;
     }
 }

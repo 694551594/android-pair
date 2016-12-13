@@ -1,4 +1,4 @@
-package cn.yhq.pair.ui.recyclerview;
+package cn.yhq.pair.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -1,4 +1,4 @@
-package cn.yhq.pair.adapter.recyclerview;
+package cn.yhq.pair.ui;
 
 import cn.yhq.adapter.recycler.ItemViewProvider1;
 import cn.yhq.adapter.recycler.ViewHolder;
