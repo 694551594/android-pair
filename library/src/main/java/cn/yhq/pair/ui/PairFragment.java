@@ -31,15 +31,14 @@ public class PairFragment extends BaseFragment {
         this.mPairView = this.getView(view, R.id.pairview);
     }
 
-    public void setPairXmlResId(int resId) {
+    public void setPairXmlResId(int resId, OnPairCreateListener listener) {
         this.mPairManager = PairManager.create(this.getContext(), new XmlPairFactory(this.getContext(), resId));
+        this.mPairManager.setOnPairCreateListener(listener);
         this.mPairManager.attach(this.mPairView);
     }
 
-    public void setOnPairCreateListener(OnPairCreateListener listener) {
-        if (this.mPairManager != null) {
-            this.mPairManager.setOnPairCreateListener(listener);
-        }
+    public void setPairXmlResId(int resId) {
+        setPairXmlResId(resId, null);
     }
 
     public <T extends IPair> T getPairById(int id) {

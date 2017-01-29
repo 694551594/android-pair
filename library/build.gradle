@@ -42,7 +42,7 @@ publish {
     userOrg = '694551594'
     groupId = 'cn.yhq'
     artifactId = 'android-pair'
-    publishVersion = '1.0.1'
+    publishVersion = '1.0.2'
     desc = 'android-pair'
     website = 'https://github.com/694551594/android-pair'
 }

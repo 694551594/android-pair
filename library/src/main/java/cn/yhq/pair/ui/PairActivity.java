@@ -29,17 +29,15 @@ public class PairActivity extends BaseActivity {
         this.mPairView = this.getView(R.id.pairview);
     }
 
-    public void setPairXmlResId(int resId) {
-        this.mPairManager = PairManager.create(this, new XmlPairFactory(this, resId));
+    public void setPairXmlResId(int resId, OnPairCreateListener listener) {
+        this.mPairManager = PairManager.create(this.getContext(), new XmlPairFactory(this.getContext(), resId));
+        this.mPairManager.setOnPairCreateListener(listener);
         this.mPairManager.attach(this.mPairView);
     }
 
-    public void setOnPairCreateListener(OnPairCreateListener listener) {
-        if (this.mPairManager != null) {
-            this.mPairManager.setOnPairCreateListener(listener);
-        }
+    public void setPairXmlResId(int resId) {
+        setPairXmlResId(resId, null);
     }
-
     public <T extends IPair> T getPairById(int id) {
         if (this.mPairManager != null) {
             return this.mPairManager.getPairById(id);
