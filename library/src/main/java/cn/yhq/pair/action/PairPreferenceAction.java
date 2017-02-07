@@ -11,7 +11,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 
 import cn.yhq.pair.R;
-import cn.yhq.pair.utils.PreferencesUtils;
+import cn.yhq.utils.PreferencesUtils;
 
 public class PairPreferenceAction implements PairAction {
     private String key;

@@ -18,8 +18,7 @@ public class PairLayoutActivity extends PairActivity {
     @Override
     protected void onViewCreated(Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
-        this.setPairXmlResId(R.xml.sample);
-        this.setOnPairCreateListener(new OnPairCreateListener() {
+        this.setPairXmlResId(R.xml.sample, new OnPairCreateListener() {
             @Override
             public void onCreate(int id, IPair pair) {
                 switch (id) {

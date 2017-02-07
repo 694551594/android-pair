@@ -12,14 +12,15 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import cn.yhq.pair.R;
-import cn.yhq.pair.utils.DisplayUtils;
+import cn.yhq.utils.DisplayUtils;
+import cn.yhq.widget.RecyclerListView;
 
 
 /**
  * Created by Yanghuiqiang on 2016/11/16.
  */
 
-public class PairView extends RecyclerView {
+public class PairView extends RecyclerListView {
 
     public PairView(Context context) {
         super(context);
@@ -40,7 +41,7 @@ public class PairView extends RecyclerView {
         this.setLayoutManager(new LinearLayoutManager(getContext()));
         this.setVerticalScrollBarEnabled(false);
         this.setBackgroundResource(android.R.color.white);
-        this.addItemDecoration(new PairView.DividerDecoration(getContext()));
+        this.setDividerDecoration(new PairView.DividerDecoration(getContext()));
     }
 
     private class DividerDecoration extends RecyclerView.ItemDecoration {

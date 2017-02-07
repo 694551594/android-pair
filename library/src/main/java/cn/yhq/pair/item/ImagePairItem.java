@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
-import cn.yhq.pair.utils.DisplayUtils;
+import cn.yhq.utils.DisplayUtils;
 
 /**
  * Created by Administrator on 2016/11/15.

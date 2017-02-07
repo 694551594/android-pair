@@ -31,10 +31,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
-    compile 'cn.yhq:android-adapter:1.2.0'
-    compile 'cn.yhq:android-recycler-adapter:1.2.0'
-    compile 'cn.yhq:android-dialog:1.3'
-    compile 'cn.yhq:android-base:1.3.0'
+    compile 'cn.yhq:android-page:2.11'
     testCompile 'junit:junit:4.12'
 }
 
@@ -42,7 +39,7 @@ publish {
     userOrg = '694551594'
     groupId = 'cn.yhq'
     artifactId = 'android-pair'
-    publishVersion = '1.0.2'
+    publishVersion = '1.0.3'
     desc = 'android-pair'
     website = 'https://github.com/694551594/android-pair'
 }
