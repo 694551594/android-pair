@@ -13,7 +13,7 @@ import android.view.View;
 
 import cn.yhq.pair.R;
 import cn.yhq.utils.DisplayUtils;
-import cn.yhq.widget.RecyclerListView;
+import cn.yhq.widget.xrecyclerview.RecyclerListView;
 
 
 /**
@@ -91,7 +91,7 @@ public class PairView extends RecyclerListView {
         private boolean shouldDrawDividerBelow(View view, RecyclerView parent) {
             final RecyclerView.ViewHolder holder = parent.getChildViewHolder(view);
             Boolean dividerAllowedBelow = (Boolean) holder.itemView.getTag(R.id.pair_divider_allowed_below);
-            if (!dividerAllowedBelow) {
+            if (dividerAllowedBelow == null || !dividerAllowedBelow) {
                 return false;
             }
             Boolean nextAllowed = true;
@@ -99,9 +99,9 @@ public class PairView extends RecyclerListView {
             if (index < parent.getChildCount() - 1) {
                 final View nextView = parent.getChildAt(index + 1);
                 final RecyclerView.ViewHolder nextHolder = parent.getChildViewHolder(nextView);
-                nextAllowed = (boolean) nextHolder.itemView.getTag(R.id.pair_divider_allowed_above);
+                nextAllowed = (Boolean) nextHolder.itemView.getTag(R.id.pair_divider_allowed_above);
             }
-            return nextAllowed;
+            return nextAllowed == null || nextAllowed;
         }
 
         public void setDivider(Drawable divider) {
