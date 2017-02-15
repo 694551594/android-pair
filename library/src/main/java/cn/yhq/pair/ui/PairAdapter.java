@@ -16,6 +16,7 @@ import cn.yhq.pair.item.PairGroup;
  */
 public class PairAdapter extends RecyclerListAdapter<IPair> {
     private List<PairLayout> mLayouts = new ArrayList<>();
+    private PairGroup mPairGroup;
 
     static class PairLayout {
         int itemLayout;
@@ -45,9 +46,10 @@ public class PairAdapter extends RecyclerListAdapter<IPair> {
         }
     }
 
-    public PairAdapter(Context context, PairGroup listData) {
-        super(context, listData.getAllVisiblePairs());
-
+    private void setup() {
+        List<IPair> list = mPairGroup.getAllVisiblePairs();
+        this.getListData().clear();
+        this.getListData().addAll(list);
         for (int i = 0; i < this.getItemCount(); i++) {
             IPair pair = this.getItem(i);
             pair.setOnPairChangeListener(new OnPairChangeListener() {
@@ -59,7 +61,7 @@ public class PairAdapter extends RecyclerListAdapter<IPair> {
 
                 @Override
                 public void onPairHierarchyChange(IPair pair) {
-                    notifyDataSetChanged();
+                    setup();
                 }
             });
 
@@ -81,6 +83,14 @@ public class PairAdapter extends RecyclerListAdapter<IPair> {
                 return mLayouts.indexOf(layout);
             }
         });
+
+        notifyDataSetChanged();
+    }
+
+    public PairAdapter(Context context, PairGroup listData) {
+        super(context);
+        this.mPairGroup = listData;
+        setup();
     }
 
 }
