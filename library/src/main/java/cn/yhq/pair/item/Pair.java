@@ -18,8 +18,6 @@ import cn.yhq.pair.action.PairClickAction;
  * Created by Administrator on 2016/11/19.
  */
 
-// 拦截器的添加顺序、group与catalog的问题，visible的问题
-
 public abstract class Pair<T extends Pair<T>> implements IPair {
     private int mId;
     private boolean mEnable = true;
@@ -162,10 +160,13 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
 
     public T addInterceptor(Interceptor<T> interceptor) {
         this.interceptors.add(interceptor);
+        if (isCreated) {
+            notifyChange();
+        }
         return (T) this;
     }
 
-    protected void notifyHierarchyChange() {
+    public void notifyHierarchyChange() {
         if (!isCreated) {
             return;
         }
@@ -174,7 +175,7 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
         }
     }
 
-    protected void notifyChange() {
+    public void notifyChange() {
         if (!isCreated) {
             return;
         }
@@ -192,7 +193,7 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
         this.notifyChange();
     }
 
-    public void setIntercept(boolean isIntercept) {
+    void setIntercept(boolean isIntercept) {
         this.isIntercept = isIntercept;
     }
 

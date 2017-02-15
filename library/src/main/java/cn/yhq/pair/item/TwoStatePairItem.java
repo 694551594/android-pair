@@ -40,7 +40,7 @@ public abstract class TwoStatePairItem<T extends TwoStatePairItem<T>> extends Pr
     }
 
     @Override
-    protected void notifyChange() {
+    public void notifyChange() {
         this.onSavePreference(checked);
         super.notifyChange();
     }
