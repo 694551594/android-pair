@@ -21,7 +21,6 @@ import cn.yhq.pair.action.PairIntentAction;
 import cn.yhq.pair.action.PairPreferenceAction;
 import cn.yhq.pair.item.IPair;
 import cn.yhq.pair.item.PairGroup;
-import cn.yhq.pair.item.PairItem;
 
 
 /**
@@ -201,13 +200,10 @@ public class PairInflater {
             if (INTENT_ACTION_TAG_NAME.equals(name)) {
 
             } else if (ACTIVITY_ACTION_TAG_NAME.equals(name)) {
-                if (parent instanceof PairItem) {
-                    PairActivityAction action = PairActivityAction.parseAction(mContext, parser, attrs);
-                    ((PairItem) parent).setAction(action);
-                }
+                PairActivityAction action = PairActivityAction.parseAction(mContext, parser, attrs);
+                parent.setAction(action);
             } else if (INTENT_TAG_NAME.equals(name)) {
                 final Intent intent;
-
                 try {
                     intent = Intent.parseIntent(mContext.getResources(), parser, attrs);
                 } catch (IOException e) {
@@ -216,16 +212,10 @@ public class PairInflater {
                     ex.initCause(e);
                     throw ex;
                 }
-
-                if (parent instanceof PairItem) {
-                    ((PairItem) parent).setAction(new PairIntentAction(intent));
-                }
-
+                parent.setAction(new PairIntentAction(intent));
             } else if (PREFERENCE_ACTION_TAG_NAME.equals(name)) {
-                if (parent instanceof PairItem) {
-                    PairPreferenceAction action = PairPreferenceAction.parseAction(mContext, parser, attrs);
-                    ((PairItem) parent).setAction(action);
-                }
+                PairPreferenceAction action = PairPreferenceAction.parseAction(mContext, parser, attrs);
+                parent.setAction(action);
             } else {
                 final IPair item = createItemFromTag(name, attrs);
                 ((PairGroup) parent).addPair(item);
