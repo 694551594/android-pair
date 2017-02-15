@@ -1,6 +1,7 @@
 package cn.yhq.pair.item;
 
 import cn.yhq.adapter.recycler.ViewHolder;
+import cn.yhq.pair.action.PairAction;
 
 /**
  * Created by Administrator on 2016/11/17.
@@ -21,5 +22,7 @@ public interface IPair {
     boolean isVisible();
 
     boolean isEnable();
+
+    void setAction(PairAction action);
 
 }

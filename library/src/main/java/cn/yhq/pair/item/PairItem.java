@@ -10,11 +10,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import cn.yhq.adapter.recycler.OnRecyclerViewItemClickListener;
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
-import cn.yhq.pair.action.PairAction;
-import cn.yhq.pair.action.PairClickAction;
 
 /**
  * Created by Administrator on 2016/11/15.
@@ -24,16 +21,7 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
     private int icon;
     private Drawable iconDrawable;
     private String key;
-    private PairAction action;
     private String description;
-    private OnRecyclerViewItemClickListener clickListener = new OnRecyclerViewItemClickListener() {
-
-        @Override
-        public void onRecyclerViewItemClick(View itemView, int position) {
-            performClick();
-        }
-
-    };
 
     public PairItem(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -69,8 +57,6 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
         itemView.setTag(R.id.pair_divider_allowed_above, true);
         itemView.setTag(R.id.pair_divider_allowed_below, true);
 
-        viewHolder.setOnRecyclerViewItemClickListener(clickListener);
-
         // key值
         String key = this.getKey();
         viewHolder.setText(R.id.key, Html.fromHtml(key));
@@ -100,15 +86,6 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
     }
 
     abstract public int getWidgetLayoutResource();
-
-    public boolean performClick() {
-        if (action != null) {
-            if (action instanceof PairClickAction) {
-                return ((PairClickAction) action).onClick(this);
-            }
-        }
-        return false;
-    }
 
     public String getDescription() {
         return description;
@@ -148,20 +125,6 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
         this.key = key;
         this.notifyChange();
         return (T) this;
-    }
-
-    public T setAction(PairAction action) {
-        this.action = action;
-        return (T) this;
-    }
-
-    public T setClickAction(PairClickAction action) {
-        this.setAction(action);
-        return (T) this;
-    }
-
-    public PairAction getAction() {
-        return action;
     }
 
 }

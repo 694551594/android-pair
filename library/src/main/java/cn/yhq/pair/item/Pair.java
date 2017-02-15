@@ -3,12 +3,16 @@ package cn.yhq.pair.item;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.yhq.adapter.recycler.OnRecyclerViewItemClickListener;
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
+import cn.yhq.pair.action.PairAction;
+import cn.yhq.pair.action.PairClickAction;
 
 /**
  * Created by Administrator on 2016/11/19.
@@ -26,6 +30,16 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
     private boolean isIntercept = true;
     private boolean isCreated = false;
     private int mItemViewLayoutId;
+    private PairAction action;
+    private OnRecyclerViewItemClickListener mOnClickListener = new OnRecyclerViewItemClickListener() {
+
+        @Override
+        public void onRecyclerViewItemClick(View itemView, int position) {
+            performClick();
+        }
+
+    };
+
 
     public Pair(Context context, AttributeSet attrs) {
         this.mContext = context;
@@ -39,6 +53,30 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
 
         a.recycle();
     }
+
+    public T setClickAction(PairClickAction<T> action) {
+        this.setAction(action);
+        return (T) this;
+    }
+
+    @Override
+    public void setAction(PairAction action) {
+        this.action = action;
+    }
+
+    public PairAction getAction() {
+        return action;
+    }
+
+    public boolean performClick() {
+        if (action != null) {
+            if (action instanceof PairClickAction) {
+                return ((PairClickAction) action).onClick(this);
+            }
+        }
+        return false;
+    }
+
 
     public T setEnable(boolean enable) {
         this.mEnable = enable;
@@ -160,7 +198,7 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder) {
-
+        viewHolder.setOnRecyclerViewItemClickListener(mOnClickListener);
     }
 
     @Override
