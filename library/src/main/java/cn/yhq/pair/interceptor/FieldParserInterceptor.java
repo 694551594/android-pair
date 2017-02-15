@@ -24,18 +24,23 @@ public class FieldParserInterceptor implements Interceptor<FieldPairItem> {
 
     @Override
     public FieldPairItem intercept(Chain<FieldPairItem> chain) throws Exception {
-        Object entity = chain.getPair().getEntity();
+		FieldPairItem item = chain.getPair();
+        Object entity = item.getEntity();
         if (entity == null) {
-            return chain.handle(chain.getPair());
+            return chain.handle(item);
         }
-        this.jexlContext.set(entity.getClass().getSimpleName().toLowerCase(Locale.getDefault()), entity);
-        String exp = chain.getPair().getExp();
+        String entityClazz = entity.getClass().getSimpleName().toLowerCase(Locale.getDefault());
+        this.jexlContext.set(entityClazz, entity);
+        String exp = item.getExp();
         if (TextUtils.isEmpty(exp)) {
-            return chain.handle(chain.getPair());
+            return chain.handle(item);
         }
+        exp = exp.replaceFirst("\\$\\{", "\\$\\{" + entityClazz + ".");
         JxltEngine.Expression expression = jxltEngine.createExpression(exp);
         Object newValue = expression.evaluate(jexlContext);
-        chain.getPair().setText(newValue);
-        return chain.handle(chain.getPair());
+		if (newValue != null) {
+			  item.setText(newValue);
+		}
+        return chain.handle(item);
     }
 }

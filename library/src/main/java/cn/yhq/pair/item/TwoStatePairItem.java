@@ -64,7 +64,7 @@ public abstract class TwoStatePairItem<T extends TwoStatePairItem<T>> extends Pr
             this.addInterceptor(new Interceptor<T>() {
                 @Override
                 public T intercept(Chain<T> chain) throws Exception {
-                    boolean checked = (boolean) getPreference();
+                    boolean checked = (boolean) getPreference(false);
                     chain.getPair().setChecked(checked);
                     return chain.handle(chain.getPair());
                 }

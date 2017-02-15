@@ -37,7 +37,7 @@
     <declare-styleable name="ImagePairItem">
         <attr name="resId" format="integer" />
         <attr name="url" format="string" />
-        <attr name="width" format="integer" />
+        <attr name="width" format="dimension" />
         <attr name="height" />
     </declare-styleable>
 

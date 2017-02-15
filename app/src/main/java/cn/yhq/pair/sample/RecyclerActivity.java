@@ -113,9 +113,9 @@ public class RecyclerActivity extends BaseActivity {
                 this.newFieldItem()
                         .setKey("用户名")
                         .setEntity(mUser)
-                        .setExp("${user.username}");
+                        .setExp("${username}");
                 this.newFieldItem()
-                        .setExp("${user.password}")
+                        .setExp("${password}")
                         .setEntity(mUser)
                         .setKey("密码");
 

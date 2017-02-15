@@ -67,11 +67,11 @@
     </PairCatalog>
     <PairCatalog pair:title="这是一个数据绑定的例子">
         <FieldPairItem
-            pair:exp="${user.username}"
+            pair:exp="${username}"
             pair:id="@+id/pair_field_username"
             pair:key="用户名" />
         <FieldPairItem
-            pair:exp="${user.password}"
+            pair:exp="${password}"
             pair:id="@+id/pair_field_password"
             pair:key="密码" />
     </PairCatalog>

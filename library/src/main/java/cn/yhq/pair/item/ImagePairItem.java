@@ -29,8 +29,8 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
 
         this.resId = a.getResourceId(R.styleable.ImagePairItem_resId, 0);
         this.url = a.getString(R.styleable.ImagePairItem_url);
-        this.width = a.getInt(R.styleable.ImagePairItem_width, 32);
-        this.height = a.getInt(R.styleable.ImagePairItem_height, 32);
+        this.width = a.getDimensionPixelSize(R.styleable.ImagePairItem_width, DisplayUtils.dp2Px(getContext(), 32));
+        this.height = a.getDimensionPixelSize(R.styleable.ImagePairItem_width, DisplayUtils.dp2Px(getContext(), 32));
 
         a.recycle();
     }
@@ -102,15 +102,8 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
         int height = this.getHeight();
 
         ViewGroup.LayoutParams params = imageView.getLayoutParams();
-        if (width != 0 && height != 0) {
-            params.height = DisplayUtils.dp2Px(getContext(), height);
-            ;
-            params.width = DisplayUtils.dp2Px(getContext(), width);
-            ;
-        } else {
-            params.height = DisplayUtils.dp2Px(getContext(), 32);
-            params.width = DisplayUtils.dp2Px(getContext(), 32);
-        }
+        params.height = height;
+        params.width = width;
         imageView.setLayoutParams(params);
     }
 }

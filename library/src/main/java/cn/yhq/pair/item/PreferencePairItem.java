@@ -23,13 +23,18 @@ public abstract class PreferencePairItem<T extends PreferencePairItem<T>> extend
         }
     }
 
-    public Object getPreference() {
+    public Object getPreference(Object defaultValue) {
         if (this.getAction() != null) {
             if (this.getAction() instanceof PairPreferenceAction) {
-                return ((PairPreferenceAction) this.getAction()).getPreference(getContext());
+                Object value = ((PairPreferenceAction) this.getAction()).getPreference(getContext());
+                if (value == null) {
+                    return defaultValue;
+                } else {
+                    return value;
+                }
             }
         }
-        return null;
+        return defaultValue;
     }
 
     public T setPreferenceAction(PairPreferenceAction action) {
