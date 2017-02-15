@@ -2,9 +2,9 @@ package cn.yhq.pair.action;
 
 import android.content.Intent;
 
-import cn.yhq.pair.item.PairItem;
+import cn.yhq.pair.item.Pair;
 
-public class PairIntentAction implements PairClickAction {
+public class PairIntentAction<T extends Pair<T>> implements PairClickAction<T> {
     private Intent intent;
 
     public PairIntentAction(Intent intent) {
@@ -12,7 +12,7 @@ public class PairIntentAction implements PairClickAction {
     }
 
     @Override
-    public boolean onClick(PairItem pairItem) {
+    public boolean onClick(T pairItem) {
         pairItem.getContext().startActivity(intent);
         return false;
     }

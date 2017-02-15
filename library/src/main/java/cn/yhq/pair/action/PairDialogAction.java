@@ -3,10 +3,10 @@ package cn.yhq.pair.action;
 import android.content.Context;
 
 import cn.yhq.dialog.core.IDialog;
-import cn.yhq.pair.item.PairItem;
+import cn.yhq.pair.item.Pair;
 
 
-public abstract class PairDialogAction implements PairClickAction {
+public abstract class PairDialogAction<T extends Pair<T>> implements PairClickAction<T> {
     private IDialog dialog;
     private Context context;
 
@@ -15,7 +15,7 @@ public abstract class PairDialogAction implements PairClickAction {
     }
 
     @Override
-    public boolean onClick(PairItem pairItem) {
+    public boolean onClick(T pairItem) {
         dialog = onCreateDialog(context);
         dialog.show();
         return false;

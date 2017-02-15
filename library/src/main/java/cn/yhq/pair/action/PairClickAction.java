@@ -1,7 +1,9 @@
 package cn.yhq.pair.action;
 
 
-public interface PairClickAction<T> extends PairAction {
+import cn.yhq.pair.item.Pair;
+
+public interface PairClickAction<T extends Pair<T>> extends PairAction {
 
     boolean onClick(T pair);
 

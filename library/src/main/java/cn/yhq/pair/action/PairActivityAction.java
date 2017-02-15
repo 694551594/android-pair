@@ -12,8 +12,9 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 
 import cn.yhq.pair.R;
+import cn.yhq.pair.item.Pair;
 
-public class PairActivityAction extends PairIntentAction {
+public class PairActivityAction<T extends Pair<T>> extends PairIntentAction<T> {
 
     public PairActivityAction(Context context, Class<?> activityClass) {
         super(new Intent(context, activityClass));

@@ -31,6 +31,10 @@ public class PairPreferenceAction implements PairAction {
         this.key = key;
     }
 
+    public String getKey() {
+        return this.key;
+    }
+
     public boolean onSavePreference(Context context, Object value) {
         return PreferencesUtils.savePreferences(context, key, value);
     }

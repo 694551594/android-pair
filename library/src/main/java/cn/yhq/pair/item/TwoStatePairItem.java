@@ -59,7 +59,7 @@ public abstract class TwoStatePairItem<T extends TwoStatePairItem<T>> extends Pr
     }
 
     @Override
-    public T setAction(PairAction action) {
+    public void setAction(PairAction action) {
         if (action instanceof PairPreferenceAction) {
             this.addInterceptor(new Interceptor<T>() {
                 @Override
@@ -70,7 +70,6 @@ public abstract class TwoStatePairItem<T extends TwoStatePairItem<T>> extends Pr
                 }
             });
         }
-        return super.setAction(action);
     }
 
 }
