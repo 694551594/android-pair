@@ -38,6 +38,7 @@ public class PairActivity extends BaseActivity {
     public void setPairXmlResId(int resId) {
         setPairXmlResId(resId, null);
     }
+
     public <T extends IPair> T getPairById(int id) {
         if (this.mPairManager != null) {
             return this.mPairManager.getPairById(id);
