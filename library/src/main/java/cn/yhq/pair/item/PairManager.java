@@ -4,6 +4,7 @@ import android.content.Context;
 
 import cn.yhq.pair.ui.PairAdapter;
 import cn.yhq.pair.ui.PairView;
+import cn.yhq.pair.xml.XmlPairFactory;
 
 
 /**
@@ -23,6 +24,10 @@ public class PairManager {
 
     public static PairManager create(Context context, PairFactory factory) {
         return new PairManager(context, factory);
+    }
+
+    public static PairManager create(Context context, int resId) {
+        return new PairManager(context, new XmlPairFactory(context, resId));
     }
 
     public PairGroup getPairGroup() {
