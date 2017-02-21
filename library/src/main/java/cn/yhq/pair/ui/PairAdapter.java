@@ -55,8 +55,9 @@ public class PairAdapter extends RecyclerListAdapter<IPair> {
             pair.setOnPairChangeListener(new OnPairChangeListener() {
                 @Override
                 public void onPairChange(IPair pair) {
-                    int index = getListData().indexOf(pair);
-                    notifyItemChanged(index);
+                    // 这里要考虑header count的情况
+                    // int index = getListData().indexOf(pair);
+                    notifyDataSetChanged();
                 }
 
                 @Override
