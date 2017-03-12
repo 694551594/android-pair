@@ -29,7 +29,7 @@ public class DateFormatInterceptor<T extends BaseTextPairItem<T>> implements Int
     @Override
     public T intercept(Chain<T> chain) throws Exception {
         String text = chain.getPair().getText();
-        if (TextUtils.isDigitsOnly(text)) {
+        if (!TextUtils.isEmpty(text) && TextUtils.isDigitsOnly(text)) {
             long time = Long.parseLong(text);
             chain.getPair().setText(mSimpleDateFormat.format(new Date(time)));
         }

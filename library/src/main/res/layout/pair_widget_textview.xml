@@ -5,7 +5,5 @@
     android:layout_height="wrap_content"
     android:gravity="right|center_vertical"
     android:text="1111"
-    android:lines="1"
-    android:ellipsize="end"
     android:textSize="@dimen/text_size"
     android:textColor="?android:attr/textColorSecondary"/>
