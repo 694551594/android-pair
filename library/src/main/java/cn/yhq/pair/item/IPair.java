@@ -25,4 +25,6 @@ public interface IPair {
 
     void setAction(PairAction action);
 
+    void setPairViewChangedListener(IPairViewChangedListener listener);
+
 }

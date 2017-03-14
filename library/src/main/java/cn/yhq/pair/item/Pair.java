@@ -38,6 +38,7 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
 
     };
 
+    private IPairViewChangedListener mPairViewChangedListener;
 
     public Pair(Context context, AttributeSet attrs) {
         this.mContext = context;
@@ -50,6 +51,11 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
         this.mVisible = a.getBoolean(R.styleable.Pair_visible, true);
 
         a.recycle();
+    }
+
+    @Override
+    public void setPairViewChangedListener(IPairViewChangedListener listener) {
+        this.mPairViewChangedListener = listener;
     }
 
     public T setClickAction(PairClickAction<T> action) {
@@ -199,6 +205,9 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder) {
         viewHolder.setOnRecyclerViewItemClickListener(mOnClickListener);
+        if (mPairViewChangedListener != null) {
+            mPairViewChangedListener.onPairViewChanged(viewHolder);
+        }
     }
 
     @Override
@@ -214,4 +223,5 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
     public final int getItemViewLayoutId() {
         return mItemViewLayoutId;
     }
+
 }
