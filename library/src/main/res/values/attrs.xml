@@ -2,7 +2,7 @@
 <resources>
 
     <declare-styleable name="Pair">
-        <attr name="id" format="integer"/>
+        <attr name="id" format="integer" />
         <attr name="icon" />
         <attr name="key" format="string" />
         <attr name="enable" format="boolean" />
@@ -18,6 +18,11 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="EdiTextPairItem">
+        <attr name="text" />
+        <attr name="hint" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="PairCatalog">
         <attr name="title" />
     </declare-styleable>
@@ -31,11 +36,11 @@
     </declare-styleable>
 
     <declare-styleable name="PreferenceAction">
-        <attr name="key"/>
+        <attr name="key" />
     </declare-styleable>
 
     <declare-styleable name="ActivityAction">
-        <attr name="targetClass" format="string"/>
+        <attr name="targetClass" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ImagePairItem">

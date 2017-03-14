@@ -75,4 +75,10 @@
             pair:id="@+id/pair_field_password"
             pair:key="密码" />
     </PairCatalog>
+    <PairCatalog pair:title="edittext">
+        <EditTextPairItem
+            pair:hint="hint文本"
+            pair:key="编辑框"
+            pair:text="默认文本" />
+    </PairCatalog>
 </PairGroup>

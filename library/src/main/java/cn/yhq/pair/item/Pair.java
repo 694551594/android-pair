@@ -75,7 +75,6 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
         return false;
     }
 
-
     public T setEnable(boolean enable) {
         this.mEnable = enable;
         this.notifyChange();

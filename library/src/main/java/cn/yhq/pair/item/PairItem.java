@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import cn.yhq.adapter.recycler.ViewHolder;
 import cn.yhq.pair.R;
@@ -22,6 +23,8 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
     private Drawable iconDrawable;
     private String key;
     private String description;
+
+    private View mWidgetView;
 
     public PairItem(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -83,6 +86,14 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
         viewStub.setVisibility(View.VISIBLE);
 
         setAllEnable(itemView, isEnable());
+    }
+
+    protected void setWidgetView(View view) {
+        this.mWidgetView = view;
+    }
+
+    public View getWidgetView() {
+        return mWidgetView;
     }
 
     abstract public int getWidgetLayoutResource();

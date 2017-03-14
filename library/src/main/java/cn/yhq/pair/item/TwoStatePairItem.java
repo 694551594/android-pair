@@ -60,6 +60,7 @@ public abstract class TwoStatePairItem<T extends TwoStatePairItem<T>> extends Pr
 
     @Override
     public void setAction(PairAction action) {
+        super.setAction(action);
         if (action instanceof PairPreferenceAction) {
             this.addInterceptor(new Interceptor<T>() {
                 @Override

@@ -41,5 +41,7 @@ public class SwitchPairItem extends TwoStatePairItem<SwitchPairItem> {
                         switchPairItem.setChecked(switchButton.isChecked());
                     }
                 });
+
+        this.setWidgetView(viewHolder.getView(R.id.switch_button));
     }
 }
