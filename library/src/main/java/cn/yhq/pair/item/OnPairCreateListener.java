@@ -31,4 +31,12 @@ public abstract class OnPairCreateListener {
     protected CheckPairItem getCheckPairItem(IPair pair) {
         return (CheckPairItem) pair;
     }
+
+    protected ButtonPairItem getButtonPairItem(IPair pair) {
+        return (ButtonPairItem) pair;
+    }
+
+    protected EditTextPairItem getEditTextPairItem(IPair pair) {
+        return (EditTextPairItem) pair;
+    }
 }
