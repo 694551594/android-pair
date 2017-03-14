@@ -106,6 +106,5 @@ public class ImagePairItem extends PairItem<ImagePairItem> {
         params.width = width;
         imageView.setLayoutParams(params);
 
-        this.setWidgetView(viewHolder.getView(R.id.image));
     }
 }

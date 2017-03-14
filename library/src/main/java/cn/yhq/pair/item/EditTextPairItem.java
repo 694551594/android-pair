@@ -84,12 +84,10 @@ public class EditTextPairItem extends PairItem<EditTextPairItem> {
         String value = this.getText();
         viewHolder.bindResId(R.id.text)
                 .setText(TextUtils.isEmpty(value) ? "" : Html.fromHtml(value));
-        this.setWidgetView(viewHolder.getView(R.id.text));
 
         EditText editText = viewHolder.getView(R.id.text);
         editText.setHint(getHint());
         editText.addTextChangedListener(mTextWatcher);
-        this.setWidgetView(editText);
     }
 
     @Override

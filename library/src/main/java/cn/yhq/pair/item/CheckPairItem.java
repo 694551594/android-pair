@@ -42,7 +42,5 @@ public class CheckPairItem extends TwoStatePairItem<CheckPairItem> {
                         checkPairItem.setChecked(checkBox.isChecked());
                     }
                 });
-
-        this.setWidgetView(viewHolder.getView(R.id.checkbox));
     }
 }

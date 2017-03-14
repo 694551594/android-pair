@@ -48,7 +48,6 @@ public class BaseTextPairItem<T extends BaseTextPairItem<T>> extends PairItem<T>
         String value = this.getText();
         viewHolder.bindResId(R.id.text)
                 .setText(TextUtils.isEmpty(value) ? "" : Html.fromHtml(value));
-        this.setWidgetView(viewHolder.getView(R.id.text));
     }
 
     @Override

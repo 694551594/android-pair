@@ -88,14 +88,6 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
         setAllEnable(itemView, isEnable());
     }
 
-    protected void setWidgetView(View view) {
-        this.mWidgetView = view;
-    }
-
-    public View getWidgetView() {
-        return mWidgetView;
-    }
-
     abstract public int getWidgetLayoutResource();
 
     public String getDescription() {
