@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PairGroup xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pair="http://schemas.android.com/apk/res-auto">
+    <PairCatalog pair:title="edittext">
+        <EditTextPairItem
+            pair:hint="hint文本"
+            pair:key="编辑框"
+            pair:text="默认文本" />
+    </PairCatalog>
     <PairCatalog pair:title="我是一组有图标的">
         <TextPairItem
             pair:icon="@drawable/find_more_friend_scan"
@@ -74,11 +80,5 @@
             pair:exp="${password}"
             pair:id="@+id/pair_field_password"
             pair:key="密码" />
-    </PairCatalog>
-    <PairCatalog pair:title="edittext">
-        <EditTextPairItem
-            pair:hint="hint文本"
-            pair:key="编辑框"
-            pair:text="默认文本" />
     </PairCatalog>
 </PairGroup>

@@ -7,6 +7,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import cn.yhq.adapter.recycler.ViewHolder;
@@ -19,6 +20,8 @@ import cn.yhq.pair.R;
 public class EditTextPairItem extends PairItem<EditTextPairItem> {
     private String text;
     private String hint;
+
+    private EditText mEditText;
 
     private TextWatcher mTextWatcher = new TextWatcher() {
         @Override
@@ -85,9 +88,9 @@ public class EditTextPairItem extends PairItem<EditTextPairItem> {
         viewHolder.bindResId(R.id.text)
                 .setText(TextUtils.isEmpty(value) ? "" : Html.fromHtml(value));
 
-        EditText editText = viewHolder.getView(R.id.text);
-        editText.setHint(getHint());
-        editText.addTextChangedListener(mTextWatcher);
+        mEditText = viewHolder.getView(R.id.text);
+        mEditText.setHint(getHint());
+        mEditText.addTextChangedListener(mTextWatcher);
     }
 
     @Override
@@ -95,4 +98,21 @@ public class EditTextPairItem extends PairItem<EditTextPairItem> {
         return R.layout.pair_widget_edittext;
     }
 
+    @Override
+    public boolean performClick() {
+        boolean flag = super.performClick();
+        if (!flag) {
+            if (mEditText != null) {
+                mEditText.requestFocus();
+                mEditText.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        InputMethodManager mInputManager = (InputMethodManager) mEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        mInputManager.showSoftInput(mEditText, 0);
+                    }
+                });
+            }
+        }
+        return flag;
+    }
 }
