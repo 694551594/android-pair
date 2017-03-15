@@ -86,6 +86,8 @@ public abstract class PairItem<T extends PairItem<T>> extends Pair<T> {
         viewStub.setVisibility(View.VISIBLE);
 
         setAllEnable(itemView, isEnable());
+
+        notifyPairViewChanged(viewHolder);
     }
 
     abstract public int getWidgetLayoutResource();

@@ -64,6 +64,8 @@ public class PairCatalog extends PairGroup {
         viewHolder.bindResId(R.id.title)
                 .setVisibility(TextUtils.isEmpty(this.getTitle()) ? View.GONE : View.VISIBLE)
                 .setText(this.getTitle());
+
+        notifyPairViewChanged(viewHolder);
     }
 
 }

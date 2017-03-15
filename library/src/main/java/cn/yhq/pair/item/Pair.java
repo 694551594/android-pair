@@ -205,6 +205,9 @@ public abstract class Pair<T extends Pair<T>> implements IPair {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder) {
         viewHolder.setOnRecyclerViewItemClickListener(mOnClickListener);
+    }
+
+    protected void notifyPairViewChanged(ViewHolder viewHolder) {
         if (mOnPairViewChangedListener != null) {
             mOnPairViewChangedListener.onPairViewChanged(viewHolder);
         }
