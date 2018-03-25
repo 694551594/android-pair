@@ -48,10 +48,10 @@ public class EditTextPairItem extends PairItem<EditTextPairItem> {
         super(context, attrs);
 
         final TypedArray a = context.obtainStyledAttributes(
-                attrs, R.styleable.EdiTextPairItem);
+                attrs, R.styleable.EditTextPairItem);
 
-        this.text = a.getString(R.styleable.BaseTextPairItem_text);
-        this.hint = a.getString(R.styleable.EdiTextPairItem_hint);
+        this.text = a.getString(R.styleable.EditTextPairItem_text);
+        this.hint = a.getString(R.styleable.EditTextPairItem_hint);
 
         a.recycle();
     }

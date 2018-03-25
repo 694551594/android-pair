@@ -18,7 +18,7 @@
         <attr name="text" />
     </declare-styleable>
 
-    <declare-styleable name="EdiTextPairItem">
+    <declare-styleable name="EditTextPairItem">
         <attr name="text" />
         <attr name="hint" format="string" />
     </declare-styleable>
